@@ -1,0 +1,27 @@
+{
+  "name": "djv",
+  "version": "0.0.1-alpha",
+  "description": "dynamic json-schema validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/korzio/djv.git"
+  },
+  "keywords": [
+    "dynamic",
+    "json-schema",
+    "json",
+    "schema",
+    "validator",
+    "validate"
+  ],
+  "author": "“Alexandre <“korzio@gmail.com”>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/korzio/djv/issues"
+  },
+  "homepage": "https://github.com/korzio/djv#readme"
+}
