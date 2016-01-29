@@ -1,2 +1,3 @@
 # djv
-d[ynamic] json-schema validator
+
+dynamic json-schema validator

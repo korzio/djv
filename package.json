@@ -1,6 +1,6 @@
 {
   "name": "djv",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "dynamic json-schema validator",
   "main": "index.js",
   "scripts": {
@@ -11,12 +11,13 @@
     "url": "git+https://github.com/korzio/djv.git"
   },
   "keywords": [
-    "dynamic",
     "json-schema",
     "json",
     "schema",
     "validator",
-    "validate"
+    "validate",
+    "dynamic",
+    "deferred"
   ],
   "author": "“Alexandre <“korzio@gmail.com”>",
   "license": "MIT",
