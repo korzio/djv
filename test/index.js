@@ -7,7 +7,7 @@ describe('djv', function () {
         assert.equal(typeof djv, 'function');
     });
 
-    var methods = ['addSchema', 'validate', 'resolve'];
+    var methods = ['addSchema', 'validate'];
     it('should contain interface ' + methods, function () {
         methods.forEach(function(methodName){
             assert.equal(typeof djv.prototype[methodName], 'function');
