@@ -8,5 +8,4 @@ dynamic json-schema validator
 
 ## TODO
 
-- use strict for generated functions
 - test folder as a dev-dependency
