@@ -3,21 +3,18 @@ var djv = require('../');
 var utils = require('../lib/utils');
 
 var testSuite = {
-    "description": "additionalItems as schema",
+    "description":
+    "additionalProperties being false does not allow other properties",
     "schema": {
-        "items": [{}],
-        "additionalItems": {"type": "integer"}
+        "properties": { "foo": {}, "bar": {} },
+        "patternProperties": { "^v": {} },
+        "additionalProperties": false
     },
     "tests": [
         {
-            "description": "additional items match schema",
-            "data": [ null, 2, 3, 4 ],
+            "description": "ignores non-objects",
+            "data": [1, 2, 3],
             "valid": true
-        },
-        {
-            "description": "additional items do not match schema",
-            "data": [ null, 2, 3, "foo" ],
-            "valid": false
         }
     ]
 };
