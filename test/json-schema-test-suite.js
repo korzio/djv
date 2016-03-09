@@ -17,7 +17,7 @@ var refs = {
 var factory = function (schema, options) {
     return {
         validate: function (json) {
-            // try {
+            try {
                 var env = new djv();
 
                 Object.keys(refs).forEach(function (uri) {
@@ -35,14 +35,14 @@ var factory = function (schema, options) {
                 }
 
                 return !errors ? { valid: true } : { valid: false, errors: [errors] };
-            // } catch (err) {
-            //     return { valid: false, errors: [err.message] };
-            // }
+            } catch (err) {
+                return { valid: false, errors: [err.message] };
+            }
         }
     };
 };
 
-var drafts = [ /*'draft3', */'draft4'];
+var drafts = [ 'draft3', 'draft4'];
 
 describe('verify test suite loads all json test files', function () {
     var testMessage = 'The number of %s test groups should match the number of %s json files';

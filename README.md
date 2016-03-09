@@ -1,3 +1,6 @@
+[![GitHub]](https://github.com/Reactive-Extensions/RxJS)
+[![Build Status](https://travis-ci.org/korzio/djv.svg)](https://travis-ci.org/korzio/djv)
+
 # djv
 
 Dynamic Json-schema Validator
@@ -10,7 +13,6 @@ Dynamic Json-schema Validator
 
 ```
 jsonSchema = {
-    "name": "test",
     "common": {
         "properties": {
             "type": {
@@ -26,7 +28,7 @@ jsonSchema = {
 
 Use `addSchema` to add json schema
 ```
-schema.addSchema('test1', jsonSchema);
+schema.addSchema('test', jsonSchema);
 ```
 
 Use `validate` to check if object corresponds to schema reference
