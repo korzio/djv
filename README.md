@@ -1,6 +1,4 @@
-[![GitHub]](https://github.com/Reactive-Extensions/RxJS)
-[![Build Status](https://travis-ci.org/korzio/djv.svg)](https://travis-ci.org/korzio/djv)
-
+[![Build Status](https://travis-ci.org/korzio/djv.svg?branch=master)](https://travis-ci.org/korzio/djv)
 # djv
 
 Dynamic Json-schema Validator
