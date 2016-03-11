@@ -1,19 +1,18 @@
-var assert = require('assert');
-var djv = require('../');
-var utils = require('../lib/utils');
+// var assert = require('assert');
+// var djv = require('../');
+// var utils = require('../lib/utils');
 
 // var testSuite = {
 //     "description":
-//     "additionalProperties being false does not allow other properties",
+//         "additionalProperties allows a schema which should validate",
 //     "schema": {
-//         "properties": { "foo": {}, "bar": {} },
-//         "patternProperties": { "^v": {} },
-//         "additionalProperties": false
+//         "properties": {"foo": {}, "bar": {}},
+//         "additionalProperties": {"type": "boolean"}
 //     },
 //     "tests": [
 //         {
-//             "description": "ignores non-objects",
-//             "data": [1, 2, 3],
+//             "description": "no additional properties is valid",
+//             "data": {"foo": 1},
 //             "valid": true
 //         }
 //     ]

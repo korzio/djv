@@ -52,7 +52,7 @@ var errors = schema.validate('test#/common', commonObj);
 - Instantiate
 - Validate
 - Randomize
-- Models like objectmodel validation or any format
+- Models like objectmodel validation or any format, json-schema object model
 - [Validation for React](https://facebook.github.io/react/docs/reusable-components.html)
 - RAML
 - XSLT-for json
@@ -113,15 +113,13 @@ investigate c++ inline functions
 
 ### General
 
-- move test folder to a dev-dependency
-- to hasOwnProperty
-- $data
 - add static generated functions posibility
 - variables names with quotes, aka properties '%%%%' will throw error
 - [asmjs compile step](http://ejohn.org/blog/asmjs-javascript-compile-target/)
 - add tests to json schema suite and json-schema-benchmark
 - [compile with google closure or smth](https://www.npmjs.com/package/google-closure-compiler)
-- Read ajv implementation
+- $data
+- ajv implementation
 - add tests to [resolve](http://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.4)
 
 -->
