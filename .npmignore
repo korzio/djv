@@ -1,2 +1,4 @@
 .travis.yml
+webpack.config.js
+lib/
 test/
