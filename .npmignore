@@ -4,3 +4,4 @@
 webpack.config.js
 lib/
 test/
+dist/

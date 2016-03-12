@@ -1,8 +1,8 @@
 {
   "name": "djv",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "description": "dynamic json-schema validator",
-  "main": "dist/djv.js",
+  "main": "djv.js",
   "scripts": {
     "test": "mocha",
     "build": "webpack"
