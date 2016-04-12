@@ -47,11 +47,11 @@ check if object corresponds to schema
 #### Examples:
 
 ```
-   schema.validate('test#/common', { type: 'common' });
-   // => undefined
+schema.validate('test#/common', { type: 'common' });
+// => undefined
 
-   schema.validate('test#/common', { type: 'custom' });
-   // => 'required: data'
+schema.validate('test#/common', { type: 'custom' });
+// => 'required: data'
 ```
 
 #### Params:
@@ -70,7 +70,7 @@ add schema to djv environment
 #### Examples:
 
 ```
-   schema.addSchema('test', jsonSchema);
+schema.addSchema('test', jsonSchema);
 ```
 
 #### Params:
@@ -89,7 +89,7 @@ removes a schema or the whole structure from djv environment
 #### Examples:
 
 ```
-   schema.removeSchema('test');
+schema.removeSchema('test');
 ```
 
 #### Params:
@@ -103,8 +103,8 @@ resolves name by existing environment
 #### Examples:
 
 ```
-   schema.resolve('test');
-   // => { name: 'test', schema: {} }, fn: ... }
+schema.resolve('test');
+// => { name: 'test', schema: {} }, fn: ... }
 ```
 
 #### Params:
@@ -122,8 +122,8 @@ exports the whole structure object from environment or by resolved name
 #### Examples:
 
 ```
-   schema.export();
-   // => { test: { name: 'test', schema: {}, ... } }
+schema.export();
+// => { test: { name: 'test', schema: {}, ... } }
 ```
 
 #### Params:
@@ -139,7 +139,7 @@ exports the whole structure object from environment or by resolved name
 imports all found structure objects to internal environment structure
 #### Examples:
 ```
-   schema.import(config);
+schema.import(config);
 ```
 #### Params:
 
