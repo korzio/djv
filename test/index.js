@@ -7,7 +7,7 @@ describe('djv', function () {
         assert.equal(typeof djv, 'function');
     });
 
-    var methods = ['addSchema', 'validate', 'resolve'];
+    var methods = ['addSchema', 'validate', 'resolve', 'import', 'export'];
     it('should contain interface ' + methods, function () {
         methods.forEach(function(methodName){
             assert.equal(typeof djv.prototype[methodName], 'function');
@@ -52,8 +52,78 @@ describe('djv', function () {
             var env = new djv();
             env.addSchema('test', jsonSchema);
 
-            var commonObj = { type: 'custom' };
+            var customObj = { type: 'custom' };
+            var errors = env.validate('test#/common', customObj);
+            assert.equal(typeof errors, 'string');
+        });
+    });
+
+    describe('export()', function(){
+        it('should return whole internal structure', function () {
+            var env = new djv();
+            env.addSchema('test', jsonSchema);
+
+            var exported = env.export();
+            assert.equal(typeof exported, 'string');
+            exported = JSON.parse(exported);
+            assert.equal(typeof exported, 'object');
+            assert.equal(typeof exported.test, 'object');
+            assert.equal(typeof exported.test.fn, 'string');
+            assert.equal(exported.test.name, 'test');
+            assert.deepEqual(exported.test.schema, jsonSchema);
+        });
+
+        it('should return partial resolved schema by name', function () {
+            var env = new djv();
+            env.addSchema('test', jsonSchema);
+
+            var exported = env.export('test#/common');
+            exported = JSON.parse(exported);
+
+            assert.equal(typeof exported, 'object');
+            assert.equal(typeof exported, 'object');
+            assert.equal(typeof exported.fn, 'string');
+            assert.equal(exported.name, 'test#/common');
+            assert.deepEqual(exported.schema, jsonSchema.common);
+        });
+    });
+
+    describe('import()', function(){
+        it('should restore whole environment', function () {
+            var oldDjv = new djv();
+            oldDjv.addSchema('test', jsonSchema);
+
+            var exported = oldDjv.export();
+            var env = new djv();
+            env.import(exported);
+
+            var commonObj = { type: 'common' };
             var errors = env.validate('test#/common', commonObj);
+            assert.equal(errors, undefined);
+
+            var customObj = { type: 'custom' };
+            errors = env.validate('test#/common', customObj);
+            assert.equal(typeof errors, 'string');
+        });
+
+        it('should restore partial environment', function () {
+            var oldDjv = new djv();
+            oldDjv.addSchema('test', jsonSchema);
+
+            var exported = oldDjv.export('test#/common');
+
+            var env = new djv();
+            env.addSchema('test', jsonSchema);
+
+            var env = new djv();
+            env.import(exported);
+
+            var commonObj = { type: 'common' };
+            var errors = env.validate('test#/common', commonObj);
+            assert.equal(errors, undefined);
+
+            var customObj = { type: 'custom' };
+            errors = env.validate('test#/common', customObj);
             assert.equal(typeof errors, 'string');
         });
     });

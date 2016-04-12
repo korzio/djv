@@ -38,8 +38,114 @@ var errors = schema.validate('test#/common', commonObj);
 
 ## API
 
-- **addSchema(String name, Object jsonSchema)** add schema to djv environment
-- **validate(String name, Object obj)** validate object by schema
+<!-- Start lib/djv.js -->
+
+### validate(name, object)
+
+check if object correspond to schema
+
+#### Examples:
+
+```
+   schema.validate('test#/common', { type: 'common' });
+   // => undefined
+
+   schema.validate('test#/common', { type: 'custom' });
+   // => 'required: data'
+```
+
+#### Params:
+
+* **String** *name*
+* **Object** *object*
+
+#### Return:
+
+* **String** error - undefined if it is valid
+
+### addSchema(name, schema)
+
+add schema to djv environment
+
+#### Examples:
+
+```
+   schema.addSchema('test', jsonSchema);
+```
+
+#### Params:
+
+* **String** *name*
+* **Object** *schema*
+
+#### Return:
+
+* **resolved**
+
+### removeSchema(name)
+
+removes a schema or the whole structure from djv environment
+
+#### Examples:
+
+```
+   schema.removeSchema('test');
+```
+
+#### Params:
+
+* **String** *name*
+
+### resolve(name)
+
+resolves name by existing environment
+
+#### Examples:
+
+```
+   schema.resolve('test');
+   // => { name: 'test', schema: {} }, fn: ... }
+```
+
+#### Params:
+
+* **String** *name*
+
+#### Return:
+
+* **resolved**
+
+### export(name)
+
+exports the whole structure object from environment or by resolved name
+
+#### Examples:
+
+```
+   schema.export();
+   // => { test: { name: 'test', schema: {}, ... } }
+```
+
+#### Params:
+
+* **String** *name*
+
+#### Return:
+
+* **serializedInternalState**
+
+### import(config)
+
+imports all found structure objects to internal environment structure
+#### Examples:
+```
+   schema.import(config);
+```
+#### Params:
+
+* **Object** *config* - internal structure or only resolved schema object
+
+<!-- End lib/djv.js -->
 
 ## Tests
 
@@ -113,7 +219,6 @@ investigate c++ inline functions
 
 ### General
 
-- add static generated functions posibility
 - variables names with quotes, aka properties '%%%%' will throw error
 - [asmjs compile step](http://ejohn.org/blog/asmjs-javascript-compile-target/)
 - add tests to json schema suite and json-schema-benchmark
