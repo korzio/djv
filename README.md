@@ -42,7 +42,7 @@ var errors = schema.validate('test#/common', commonObj);
 
 ### validate(name, object)
 
-check if object correspond to schema
+check if object corresponds to schema
 
 #### Examples:
 
