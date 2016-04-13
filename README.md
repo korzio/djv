@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/korzio/djv.svg?branch=master)](https://travis-ci.org/korzio/djv)
-# djv
-
 [![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)](https://gitter.im/korzio/djv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Dynamic Json-schema Validator
+# djv
+
+Dynamic Json Schema Validator
 
 ## Installation
 
@@ -12,7 +12,8 @@ Dynamic Json-schema Validator
 ## Usage
 
 ```
-jsonSchema = {
+var env = new djv();
+var jsonSchema = {
     "common": {
         "properties": {
             "type": {
@@ -24,17 +25,20 @@ jsonSchema = {
         ]
     }
 };
-```
 
-Use `addSchema` to add json schema
-```
-schema.addSchema('test', jsonSchema);
+// Use `addSchema` to add json schema
+env.addSchema('test', jsonSchema);
+env.validate('test#/common', { type: 'common' });
+// => undefined
+
+env.validate('test#/common', { type: 'custom' });
+// => 'required: data'
 ```
 
 Use `validate` to check if object corresponds to schema reference
 
 ```
-commonObj = { type: 'common' };
+var commonObj = { type: 'common' };
 var errors = schema.validate('test#/common', commonObj);
 ```
 
@@ -49,10 +53,10 @@ check if object corresponds to schema
 #### Examples:
 
 ```
-schema.validate('test#/common', { type: 'common' });
+env.validate('test#/common', { type: 'common' });
 // => undefined
 
-schema.validate('test#/common', { type: 'custom' });
+env.validate('test#/common', { type: 'custom' });
 // => 'required: data'
 ```
 
@@ -72,7 +76,7 @@ add schema to djv environment
 #### Examples:
 
 ```
-schema.addSchema('test', jsonSchema);
+env.addSchema('test', jsonSchema);
 ```
 
 #### Params:
@@ -91,7 +95,7 @@ removes a schema or the whole structure from djv environment
 #### Examples:
 
 ```
-schema.removeSchema('test');
+env.removeSchema('test');
 ```
 
 #### Params:
@@ -105,7 +109,7 @@ resolves name by existing environment
 #### Examples:
 
 ```
-schema.resolve('test');
+env.resolve('test');
 // => { name: 'test', schema: {} }, fn: ... }
 ```
 
@@ -124,7 +128,7 @@ exports the whole structure object from environment or by resolved name
 #### Examples:
 
 ```
-schema.export();
+env.export();
 // => { test: { name: 'test', schema: {}, ... } }
 ```
 
@@ -141,7 +145,7 @@ schema.export();
 imports all found structure objects to internal environment structure
 #### Examples:
 ```
-schema.import(config);
+env.import(config);
 ```
 #### Params:
 
