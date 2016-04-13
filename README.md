@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/korzio/djv.svg?branch=master)](https://travis-ci.org/korzio/djv)
 # djv
 
+[![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)](https://gitter.im/korzio/djv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Dynamic Json-schema Validator
 
 ## Installation
