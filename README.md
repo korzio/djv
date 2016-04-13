@@ -35,13 +35,6 @@ env.validate('test#/common', { type: 'custom' });
 // => 'required: data'
 ```
 
-Use `validate` to check if object corresponds to schema reference
-
-```
-var commonObj = { type: 'common' };
-var errors = schema.validate('test#/common', commonObj);
-```
-
 ## API
 
 <!-- Start lib/djv.js -->
