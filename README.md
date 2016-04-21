@@ -7,4 +7,6 @@ This is a part of **djv** packages aimed to work with json-schema. In future (~ 
 
 ## Resources
 
+- [djv](https://github.com/korzio/djv)
+- [djvu](https://github.com/korzio/djvu)
 - [JSON Schema Instantiator tests](https://github.com/tomarad/JSON-Schema-Instantiator/blob/master/tests/tests.js)
