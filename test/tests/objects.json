@@ -1,0 +1,74 @@
+[
+    {
+        "schema": {
+            "type": "object"
+        },
+        "tests": [
+            {
+                "description": "should instantiate object without properties",
+                "output": {}
+            }
+        ]
+    },
+    {
+        "schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "tests": [
+            {
+                "description": "should instantiate object with property",
+                "output": {
+                    "title": ""
+                }
+            }
+        ]
+    },
+    {
+        "schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "default": "Example"
+                }
+            }
+        },
+        "tests": [
+            {
+                "description": "should instantiate object with property with default value",
+                "output": {
+                    "title": "Example"
+                }
+            }
+        ]
+    },
+    {
+        "schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "default": "Example"
+                },
+                "amount": {
+                    "type": "number",
+                    "default": 10
+                }
+            }
+        },
+        "tests": [
+            {
+                "description": "should instantiate object with more than one property",
+                "output": {
+                    "title": "Example",
+                    "amount": 10
+                }
+            }
+        ]
+    }
+]

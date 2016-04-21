@@ -1,0 +1,58 @@
+[
+    {
+        "description": "string",
+        "schema": {
+            "type": "string"
+        },
+        "tests": [
+            {
+                "output": ""
+            }
+        ]
+    },
+    {
+        "description": "number",
+        "schema": {
+            "type": "number"
+        },
+        "tests": [
+            {
+                "output": 0
+            }
+        ]
+    },
+    {
+        "description": "boolean",
+        "schema": {
+            "type": "boolean"
+        },
+        "tests": [
+            {
+                "output": false
+            }
+        ]
+    },
+    {
+        "description": "null",
+        "schema": {
+            "type": "null"
+        },
+        "tests": [
+            {
+                "output": null
+            }
+        ]
+    },
+    {
+        "description": "default",
+        "schema": {
+            "type": "number",
+            "default": 100
+        },
+        "tests": [
+            {
+                "output": 100
+            }
+        ]
+    }
+]
