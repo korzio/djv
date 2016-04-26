@@ -34,12 +34,18 @@ describe('djvi', function () {
             var resolved = env.resolve('test#/common');
 
             assert.equal(typeof resolved, 'object');
-            assert.equal(typeof resolved.fn, 'function');
+            assert.equal(typeof resolved.data, 'object');
         });
     });
 
-    describe('instantiate()', function(){
+    describe('instance()', function(){
+        it('should return object for json schema common example', function () {
+            var env = new djv();
+            env.addSchema('test', jsonSchema);
 
+            assert.deepEqual(env.instance('test#/common'), { type: 'common' });
+            assert.deepEqual(env.instance('test'), {});
+        });
     });
 
     describe('resolve()', function(){
