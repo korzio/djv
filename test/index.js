@@ -1,7 +1,7 @@
 var assert = require('assert');
 var djv = require('../');
 
-describe('djvi', function () {
+describe('djv istance', function () {
 
     it('should exist', function () {
         assert.equal(typeof djv, 'function');

@@ -17,4 +17,4 @@ var jsonSchema = {
 var env = new djv();
 env.addSchema('test', jsonSchema);
 
-assert.equal(env.instance('test#/common'), { type: 'common' });
+assert.deepEqual(env.instance('test#/common'), { type: 'common' });
