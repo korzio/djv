@@ -8,7 +8,8 @@
                         "title": {
                             "type": "string"
                         }
-                    }
+                    },
+                    "required": ["title"]
                 },
                 {
                     "type": "object",
@@ -17,7 +18,8 @@
                             "type": "number",
                             "default": 1
                         }
-                    }
+                    },
+                    "required": ["amount"]
                 }
             ]
         },
