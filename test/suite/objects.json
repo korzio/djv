@@ -17,7 +17,8 @@
                 "title": {
                     "type": "string"
                 }
-            }
+            },
+            "required": ["title"]
         },
         "tests": [
             {
@@ -36,7 +37,8 @@
                     "type": "string",
                     "default": "Example"
                 }
-            }
+            },
+            "required": ["title"]
         },
         "tests": [
             {
@@ -59,7 +61,8 @@
                     "type": "number",
                     "default": 10
                 }
-            }
+            },
+            "required": ["title", "amount"]
         },
         "tests": [
             {
