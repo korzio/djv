@@ -7,7 +7,10 @@ This is a part of **djv** packages aimed to work with json-schema. In future (~ 
 
 ## Concepts
 
-JSON Schema instantiator should generate `minimal` object, valid to a given schema. Minimal means, that, f.e. not required properties will be ommitted.
+JSON Schema instantiator should generate `minimal` object, valid to a given schema.
+
+- Not required properties will be ommitted.
+- maximum and minimum will be set up for given number
 
 ## TODO
 

@@ -26,7 +26,7 @@
         "tests": [
             {
                 "description": "should instantiate schema with allOf",
-                "output": {
+                "data": {
                     "title": "",
                     "amount": 1
                 }

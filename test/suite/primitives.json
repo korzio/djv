@@ -7,7 +7,7 @@
         "tests": [
             {
                 "description": "should instantiate empty string",
-                "output": ""
+                "data": ""
             }
         ]
     },
@@ -19,7 +19,7 @@
         "tests": [
             {
                 "description": "should instantiate 0",
-                "output": 0
+                "data": 0
             }
         ]
     },
@@ -31,7 +31,7 @@
         "tests": [
             {
                 "description": "should instantiate false",
-                "output": false
+                "data": false
             }
         ]
     },
@@ -43,7 +43,7 @@
         "tests": [
             {
                 "description": "should instantiate null",
-                "output": null
+                "data": null
             }
         ]
     },
@@ -56,7 +56,7 @@
         "tests": [
             {
                 "description": "should instantiate default number",
-                "output": 100
+                "data": 100
             }
         ]
     }

@@ -6,7 +6,7 @@
         "tests": [
             {
                 "description": "should instantiate object without properties",
-                "output": {}
+                "data": {}
             }
         ]
     },
@@ -23,7 +23,7 @@
         "tests": [
             {
                 "description": "should instantiate object with property",
-                "output": {
+                "data": {
                     "title": ""
                 }
             }
@@ -43,7 +43,7 @@
         "tests": [
             {
                 "description": "should instantiate object with property with default value",
-                "output": {
+                "data": {
                     "title": "Example"
                 }
             }
@@ -67,7 +67,7 @@
         "tests": [
             {
                 "description": "should instantiate object with more than one property",
-                "output": {
+                "data": {
                     "title": "Example",
                     "amount": 10
                 }

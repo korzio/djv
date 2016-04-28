@@ -1,0 +1,69 @@
+[
+    {
+        "description": "allOf",
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "bar": {"type": "integer"}
+                    },
+                    "required": ["bar"]
+                },
+                {
+                    "properties": {
+                        "foo": {"type": "string"}
+                    },
+                    "required": ["foo"]
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "allOf",
+                "data": { "foo": "", "bar": 0 }
+            }
+        ]
+    },
+    {
+        "description": "allOf with base schema",
+        "schema": {
+            "properties": {"bar": {"type": "integer"}},
+            "required": ["bar"],
+            "allOf" : [
+                {
+                    "properties": {
+                        "foo": {"type": "string"}
+                    },
+                    "required": ["foo"]
+                },
+                {
+                    "properties": {
+                        "baz": {"type": "null"}
+                    },
+                    "required": ["baz"]
+                }
+            ]
+        },
+        "tests": [
+            {
+                "description": "valid",
+                "data": {"bar": 0, "foo": "", "baz": null}
+            }
+        ]
+    },
+    {
+        "description": "allOf simple types",
+        "schema": {
+            "allOf": [
+                {"maximum": 30},
+                {"minimum": 20}
+            ]
+        },
+        "tests": [
+            {
+                "description": "valid",
+                "data": 20
+            }
+        ]
+    }
+]
