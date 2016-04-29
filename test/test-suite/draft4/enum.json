@@ -1,0 +1,39 @@
+[
+    {
+        "description": "simple enum validation",
+        "schema": {"enum": [1, 2, 3]},
+        "tests": [
+            {
+                "description": "one of the enum is valid",
+                "data": 1
+            }
+        ]
+    },
+    {
+        "description": "heterogeneous enum validation",
+        "schema": {"enum": [6, "foo", [], true, {"foo": 12}]},
+        "tests": [
+            {
+                "description": "one of the enum is valid",
+                "data": 6
+            }
+        ]
+    },
+    {
+        "description": "enums in properties",
+        "schema": {
+           "type":"object",
+		     "properties": {
+		        "foo": {"enum":["foo"]},
+		        "bar": {"enum":["bar"]}
+		     },
+		     "required": ["bar"]
+		  },
+        "tests": [
+            {
+                "description": "both properties are valid",
+                "data": {"bar":"bar"}
+            }
+        ]
+    }
+]

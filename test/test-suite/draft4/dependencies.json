@@ -1,0 +1,98 @@
+[
+    {
+        "description": "dependencies not required",
+        "schema": {
+            "dependencies": {"bar": ["foo"]}
+        },
+        "tests": [
+            {
+                "description": "neither",
+                "data": {}
+            }
+        ]
+    },
+    {
+        "description": "dependencies string",
+        "schema": {
+            "dependencies": {"bar": "foo"},
+            "required": ["bar"]
+        },
+        "tests": [
+            {
+                "description": "with dependency",
+                "data": {"foo": {}, "bar": {}}
+            }
+        ]
+    },
+    {
+        "description": "dependencies array",
+        "schema": {
+            "dependencies": {"bar": ["foo"]},
+            "properties": {
+                "bar": {"type": "null"},
+                "foo": {"type": "string"}
+            },
+            "required": ["bar"]
+        },
+        "tests": [
+            {
+                "description": "with specific properites schemas",
+                "data": {"foo": "", "bar": null}
+            }
+        ]
+    },
+    {
+        "description": "multiple dependencies",
+        "schema": {
+            "dependencies": {"quux": ["foo", "bar"]},
+            "required": ["quux"]
+        },
+        "tests": [
+            {
+                "description": "with dependencies",
+                "data": {"foo": {}, "bar": {}, "quux": {}}
+            }
+        ]
+    },
+    {
+        "description": "multiple dependencies subschema",
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "foo": {"type": "integer"},
+                        "bar": {"type": "integer"}
+                    },
+                    "required": ["bar", "foo"]
+                }
+            }
+        },
+        "tests": [
+            {
+                "description": "valid",
+                "data": {"foo": 0, "bar": 0}
+            }
+        ]
+    },
+    {
+        "description": "multiple dependencies subschema keeps other schemas",
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "foo": {"type": "integer"},
+                        "bar": {"type": "integer"}
+                    },
+                    "required": ["bar", "foo"]
+                }
+            },
+            "required": ["bar1", "foo1"]
+        },
+        "tests": [
+            {
+                "description": "valid",
+                "data": {"foo": 0, "bar": 0, "bar1": {}, "foo1": {}}
+            }
+        ]
+    }
+]

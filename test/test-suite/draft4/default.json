@@ -5,20 +5,15 @@
             "properties": {
                 "foo": {
                     "type": "integer",
-                    "default": []
+                    "default": 13
                 }
-            }
+            },
+            "required": ["foo"]
         },
         "tests": [
             {
                 "description": "valid when property is specified",
-                "data": {"foo": 13},
-                "valid": true
-            },
-            {
-                "description": "still valid when the invalid default is used",
-                "data": {},
-                "valid": true
+                "data": {"foo": 13}
             }
         ]
     },
@@ -28,21 +23,15 @@
             "properties": {
                 "bar": {
                     "type": "string",
-                    "minLength": 4,
                     "default": "bad"
                 }
-            }
+            },
+            "required": ["bar"]
         },
         "tests": [
             {
                 "description": "valid when property is specified",
-                "data": {"bar": "good"},
-                "valid": true
-            },
-            {
-                "description": "still valid when the invalid default is used",
-                "data": {},
-                "valid": true
+                "data": {"bar": "bad"}
             }
         ]
     }

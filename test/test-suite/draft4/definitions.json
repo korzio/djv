@@ -1,0 +1,12 @@
+[
+    {
+        "description": "valid definition",
+        "schema": {"$ref": "http://json-schema.org/draft-04/schema#"},
+        "tests": [
+            {
+                "description": "valid definition schema",
+                "data": {}
+            }
+        ]
+    }
+]
