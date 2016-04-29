@@ -8,13 +8,7 @@
         "tests": [
             {
                 "description": "additional items match schema",
-                "data": [ null, 2, 3, 4 ],
-                "valid": true
-            },
-            {
-                "description": "additional items do not match schema",
-                "data": [ null, 2, 3, "foo" ],
-                "valid": false
+                "data": [{}]
             }
         ]
     },
@@ -27,8 +21,7 @@
         "tests": [
             {
                 "description": "all items match schema",
-                "data": [ 1, 2, 3, 4, 5 ],
-                "valid": true
+                "data": [{}]
             }
         ]
     },
@@ -41,13 +34,7 @@
         "tests": [
             {
                 "description": "no additional items present",
-                "data": [ 1, 2, 3 ],
-                "valid": true
-            },
-            {
-                "description": "additional items are not permitted",
-                "data": [ 1, 2, 3, 4 ],
-                "valid": false
+                "data": [{}, {}, {}]
             }
         ]
     },
@@ -58,13 +45,7 @@
             {
                 "description":
                     "items defaults to empty schema so everything is valid",
-                "data": [ 1, 2, 3, 4, 5 ],
-                "valid": true
-            },
-            {
-                "description": "ignores non-arrays",
-                "data": {"foo" : "bar"},
-                "valid": true
+                "data": {}
             }
         ]
     },
@@ -74,8 +55,7 @@
         "tests": [
             {
                 "description": "only the first item is validated",
-                "data": [1, "foo", false],
-                "valid": true
+                "data": [0]
             }
         ]
     }

@@ -9,14 +9,26 @@ This is a part of **djv** packages aimed to work with json-schema. In future (~ 
 
 JSON Schema instantiator should generate `minimal` object, valid to a given schema.
 
-- Not required properties will be ommitted.
+- not required properties will be ommitted
 - maximum and minimum will be set up for given number
+- primitives schemas are instantiated with default values
+```
+null: null
+string: ''
+boolean: false
+number: 0
+integer: 0
+object: Object
+array: Array
+```
 
 ## TODO
 
 - add common json schema tests as in json-schema validate suite
 - each instance should be unique? Clone can help
 - add nested structure schema test
+- add backward tests to generated objects valid by schema
+- add posibility to customize generators
 
 ## Resources
 

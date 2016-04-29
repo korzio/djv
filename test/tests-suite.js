@@ -23,7 +23,13 @@ describe('Local tests suite', function () {
 
 describe('General tests suite', function () {
     // fs.readdirSync('test/draft4').forEach(file => {
-    ['allOf', 'anyOf'].forEach(file => {
+    [
+        'additionalItems',
+        'additionalProperties',
+        'items',
+        'allOf',
+        'anyOf'
+    ].forEach(file => {
         var packages = require('./draft4/' + file);
         packages.forEach(package => {
             package.tests.forEach(test => {

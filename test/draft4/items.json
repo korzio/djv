@@ -7,18 +7,7 @@
         "tests": [
             {
                 "description": "valid items",
-                "data": [ 1, 2, 3 ],
-                "valid": true
-            },
-            {
-                "description": "wrong type of items",
-                "data": [1, "x"],
-                "valid": false
-            },
-            {
-                "description": "ignores non-arrays",
-                "data": {"foo" : "bar"},
-                "valid": true
+                "data": [0]
             }
         ]
     },
@@ -33,13 +22,7 @@
         "tests": [
             {
                 "description": "correct types",
-                "data": [ 1, "foo" ],
-                "valid": true
-            },
-            {
-                "description": "wrong types",
-                "data": [ "foo", 1 ],
-                "valid": false
+                "data": [ 0, "" ]
             }
         ]
     }
