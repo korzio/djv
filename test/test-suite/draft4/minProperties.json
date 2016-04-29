@@ -4,24 +4,18 @@
         "schema": {"minProperties": 1},
         "tests": [
             {
-                "description": "longer is valid",
-                "data": {"foo": 1, "bar": 2},
-                "valid": true
-            },
+                "description": "exact length is valid",
+                "data": {"0": {}}
+            }
+        ]
+    },
+    {
+        "description": "minProperties validation with existing object",
+        "schema": {"minProperties": 2, "required": ["foo"]},
+        "tests": [
             {
                 "description": "exact length is valid",
-                "data": {"foo": 1},
-                "valid": true
-            },
-            {
-                "description": "too short is invalid",
-                "data": {},
-                "valid": false
-            },
-            {
-                "description": "ignores non-objects",
-                "data": "",
-                "valid": true
+                "data": {"0": {}, "foo": {}}
             }
         ]
     }

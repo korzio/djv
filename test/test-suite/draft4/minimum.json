@@ -5,18 +5,7 @@
         "tests": [
             {
                 "description": "above the minimum is valid",
-                "data": 2.6,
-                "valid": true
-            },
-            {
-                "description": "below the minimum is invalid",
-                "data": 0.6,
-                "valid": false
-            },
-            {
-                "description": "ignores non-numbers",
-                "data": "x",
-                "valid": true
+                "data": 1.1
             }
         ]
     },
@@ -29,13 +18,7 @@
         "tests": [
             {
                 "description": "above the minimum is still valid",
-                "data": 1.2,
-                "valid": true
-            },
-            {
-                "description": "boundary point is invalid",
-                "data": 1.1,
-                "valid": false
+                "data": 2.1
             }
         ]
     }
