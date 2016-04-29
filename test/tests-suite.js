@@ -49,7 +49,8 @@ describe('General tests suite', function () {
         'minimum',
         'minItems',
         'minLength',
-        'minProperties'
+        'minProperties',
+        'multipleOf'
     ].forEach(file => {
         var packages = require('./test-suite/draft4/' + file);
         describe(file, () => {

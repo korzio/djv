@@ -1,8 +1,8 @@
 var assert = require('assert');
 var djv = require('../');
 
-var package = require('./test-suite/draft4/dependencies.json')
-    .find(package => package.description === 'multiple dependencies subschema');
+// var package = require('./test-suite/draft4/dependencies.json')
+//     .find(package => package.description === 'multiple dependencies subschema');
 
 var globalPath = './../node_modules/json-schema-test-suite';
 var refs = {
@@ -18,6 +18,19 @@ Object.keys(refs).forEach(function (uri) {
     env.addSchema(uri, refs[uri]);
 });
 
-env.addSchema('test', package.schema);
+// env.addSchema('test', package.schema);
+env.addSchema('test', {
+    "properties": {
+        "a": {
+            "properties": {
+                "a": {
+                    "required": ["a"]
+                }
+            },
+            "required": ["a"]
+        }
+    },
+    "required": ["a"]
+});
 
 // assert.deepEqual(env.instance('test'), package.tests[0]);

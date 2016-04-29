@@ -12,6 +12,27 @@
     },
     {
         "schema": {
+            "properties": {
+                "a": {
+                    "properties": {
+                        "a": {
+                            "required": ["a"]
+                        }
+                    },
+                    "required": ["a"]
+                }
+            },
+            "required": ["a"]
+        },
+        "tests": [
+            {
+                "description": "should instantiate hierarchical object",
+                "data": { "a": { "a": { "a": {}}}}
+            }
+        ]
+    },
+    {
+        "schema": {
             "type": "object",
             "properties": {
                 "title": {
