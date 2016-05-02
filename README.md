@@ -31,6 +31,7 @@ array: Array
 - add backward tests to generated objects valid by schema
 - add posibility to customize generators
 - add `allOf` and other cases to `not` schema
+- add `oneOf` complex example/generator
 
 ## Resources
 
