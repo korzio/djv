@@ -50,7 +50,8 @@ describe('General tests suite', function () {
         'minItems',
         'minLength',
         'minProperties',
-        'multipleOf'
+        'multipleOf',
+        'not'
     ].forEach(file => {
         var packages = require('./test-suite/draft4/' + file);
         describe(file, () => {
@@ -66,7 +67,11 @@ describe('General tests suite', function () {
                         env.addSchema('test', package.schema);
                         var instance = env.instance('test');
 
-                        assert.deepEqual(instance, test.data);
+                        if(typeof instance === 'object') {
+                            assert.deepEqual(instance, test.data);
+                        } else {
+                            assert.strictEqual(instance, test.data);
+                        }
                     })
                 })
             })

@@ -9,8 +9,8 @@ This is a part of **djv** packages aimed to work with json-schema. In future (~ 
 
 JSON Schema instantiator should generate `minimal` object, valid to a given schema.
 
-- not required properties will be ommitted
-- maximum and minimum will be set up for given number
+- **not required** properties will be ommitted
+- **maximum** and **minimum** will be set up for given number
 - primitives schemas are instantiated with default values
 ```
 null: null
@@ -21,6 +21,7 @@ integer: 0
 object: Object
 array: Array
 ```
+- **not** recursively changes negative schema to use different types
 
 ## TODO
 
@@ -29,6 +30,7 @@ array: Array
 - add nested structure schema test
 - add backward tests to generated objects valid by schema
 - add posibility to customize generators
+- add `allOf` and other cases to `not` schema
 
 ## Resources
 
