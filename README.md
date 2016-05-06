@@ -32,6 +32,8 @@ array: Array
 - add posibility to customize generators
 - add `allOf` and other cases to `not` schema
 - add `oneOf` complex example/generator
+- add regexp instantiate (pattern and patternProperties tests)
+- add uniqueItems custom logic
 
 ## Resources
 

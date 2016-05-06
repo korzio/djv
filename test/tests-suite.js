@@ -52,7 +52,15 @@ describe('General tests suite', function () {
         'minProperties',
         'multipleOf',
         'not',
-        'oneOf'
+        'oneOf',
+        // 'pattern',
+        // 'patternProperties',
+        'properties',
+        // 'ref',
+        // 'refRemote',
+        'required',
+        'type',
+        'uniqueItems'
     ].forEach(file => {
         var packages = require('./test-suite/draft4/' + file);
         describe(file, () => {

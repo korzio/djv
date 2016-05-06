@@ -11,13 +11,7 @@
         "tests": [
             {
                 "description": "present required property is valid",
-                "data": {"foo": 1},
-                "valid": true
-            },
-            {
-                "description": "non-present required property is invalid",
-                "data": {"bar": 1},
-                "valid": false
+                "data": {"foo": {}}
             }
         ]
     },
@@ -31,8 +25,7 @@
         "tests": [
             {
                 "description": "not required by default",
-                "data": {},
-                "valid": true
+                "data": {}
             }
         ]
     }
