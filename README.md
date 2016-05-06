@@ -18,8 +18,8 @@ string: ''
 boolean: false
 number: 0
 integer: 0
-object: Object
-array: Array
+object: {}
+array: []
 ```
 - **not** recursively changes negative schema to use different types
 
