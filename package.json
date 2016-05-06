@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/korzio/djvi#readme",
   "devDependencies": {
+    "djv": "^0.1.2",
     "json-schema-test-suite": "0.0.10",
     "mocha": "^2.4.5"
   }

@@ -1,5 +1,6 @@
 var assert = require('assert');
-var djv = require('../');
+var djvi = require('../');
+var djv = require('djv');
 var fs = require('fs');
 
 describe('Local tests suite', function () {
@@ -9,11 +10,16 @@ describe('Local tests suite', function () {
             packages.forEach(package => {
                 package.tests.forEach(test => {
                     it(test.description, function () {
-                        var env = new djv();
+                        var env = new djvi();
                         env.addSchema('test', package.schema);
                         var instance = env.instance('test');
 
                         assert.deepEqual(instance, test.data);
+
+                        // assert json schema validator with output data
+                        var validatorEnv = new djv();
+                        validatorEnv.addSchema('test', package.schema);
+                        assert.equal(validatorEnv.validate('test', instance), undefined);
                     })
                 })
             })
@@ -67,7 +73,7 @@ describe('General tests suite', function () {
             packages.forEach(package => {
                 package.tests.forEach(test => {
                     it(package.description + ' - ' + test.description, function () {
-                        var env = new djv();
+                        var env = new djvi();
 
                         Object.keys(refs).forEach(function (uri) {
                             env.addSchema(uri, refs[uri]);
@@ -81,6 +87,15 @@ describe('General tests suite', function () {
                         } else {
                             assert.strictEqual(instance, test.data);
                         }
+
+                        // assert json schema validator with output data
+                        var validatorEnv = new djv();
+                        Object.keys(refs).forEach(function (uri) {
+                            validatorEnv.addSchema(uri, refs[uri]);
+                        });
+
+                        validatorEnv.addSchema('test', package.schema);
+                        assert.equal(validatorEnv.validate('test', instance), undefined);
                     })
                 })
             })

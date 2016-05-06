@@ -47,7 +47,9 @@
         "schema": {
             "properties": {
                 "foo": {
-                    "not": {}
+                    "not": {
+                        "type": "object"
+                    }
                 }
             },
             "required": ["foo"]
