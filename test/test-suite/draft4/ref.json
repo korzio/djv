@@ -1,53 +1,17 @@
 [
     {
-        "description": "root pointer ref",
-        "schema": {
-            "properties": {
-                "foo": {"$ref": "#"}
-            },
-            "additionalProperties": false
-        },
-        "tests": [
-            {
-                "description": "match",
-                "data": {"foo": false},
-                "valid": true
-            },
-            {
-                "description": "recursive match",
-                "data": {"foo": {"foo": false}},
-                "valid": true
-            },
-            {
-                "description": "mismatch",
-                "data": {"bar": false},
-                "valid": false
-            },
-            {
-                "description": "recursive mismatch",
-                "data": {"foo": {"bar": false}},
-                "valid": false
-            }
-        ]
-    },
-    {
         "description": "relative pointer ref to object",
         "schema": {
             "properties": {
                 "foo": {"type": "integer"},
                 "bar": {"$ref": "#/properties/foo"}
-            }
+            },
+            "required": ["bar"]
         },
         "tests": [
             {
                 "description": "match",
-                "data": {"bar": 3},
-                "valid": true
-            },
-            {
-                "description": "mismatch",
-                "data": {"bar": true},
-                "valid": false
+                "data": {"bar": 0}
             }
         ]
     },
@@ -62,13 +26,7 @@
         "tests": [
             {
                 "description": "match array",
-                "data": [1, 2],
-                "valid": true
-            },
-            {
-                "description": "mismatch array",
-                "data": [1, "foo"],
-                "valid": false
+                "data": [0, 0]
             }
         ]
     },
@@ -82,38 +40,13 @@
                 "tilda": {"$ref": "#/tilda~0field"},
                 "slash": {"$ref": "#/slash~1field"},
                 "percent": {"$ref": "#/percent%25field"}
-            }
+            },
+            "required": ["tilda", "slash", "percent"]
         },
         "tests": [
             {
-                "description": "slash invalid",
-                "data": {"slash": "aoeu"},
-                "valid": false
-            },
-            {
-                "description": "tilda invalid",
-                "data": {"tilda": "aoeu"},
-                "valid": false
-            },
-            {
-                "description": "percent invalid",
-                "data": {"percent": "aoeu"},
-                "valid": false
-            },
-            {
                 "description": "slash valid",
-                "data": {"slash": 123},
-                "valid": true
-            },
-            {
-                "description": "tilda valid",
-                "data": {"tilda": 123},
-                "valid": true
-            },
-            {
-                "description": "percent valid",
-                "data": {"percent": 123},
-                "valid": true
+                "data": {"slash": 0, "tilda": 0, "percent": 0}
             }
         ]
     },
@@ -130,13 +63,7 @@
         "tests": [
             {
                 "description": "nested ref valid",
-                "data": 5,
-                "valid": true
-            },
-            {
-                "description": "nested ref invalid",
-                "data": "a",
-                "valid": false
+                "data": 0
             }
         ]
     },
@@ -146,13 +73,7 @@
         "tests": [
             {
                 "description": "remote ref valid",
-                "data": {"minLength": 1},
-                "valid": true
-            },
-            {
-                "description": "remote ref invalid",
-                "data": {"minLength": -1},
-                "valid": false
+                "data": {}
             }
         ]
     }

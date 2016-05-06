@@ -56,8 +56,8 @@ describe('General tests suite', function () {
         // 'pattern',
         // 'patternProperties',
         'properties',
-        // 'ref',
-        // 'refRemote',
+        'ref',
+        'refRemote',
         'required',
         'type',
         'uniqueItems'
