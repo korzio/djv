@@ -25,10 +25,7 @@ array: Array
 
 ## TODO
 
-- add common json schema tests as in json-schema validate suite
 - each instance should be unique? Clone can help
-- add nested structure schema test
-- add backward tests to generated objects valid by schema
 - add posibility to customize generators
 - add `allOf` and other cases to `not` schema
 - add `oneOf` complex example/generator
