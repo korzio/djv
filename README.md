@@ -47,7 +47,7 @@ env.instance('test#/common');
 
 ### instance(name)
 
-check if object correspond to schema
+instantiate an object that corresponds to a schema
 ```
 env.instance('test#/common');
 // => { type: 'common' }
@@ -55,7 +55,7 @@ env.instance('test#/common');
 
 ### addSchema(name, schema)
 
-add schema to djv environment
+add a schema to djv environment
 
 ```
 env.addSchema('test', jsonSchema);
