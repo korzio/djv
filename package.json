@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "docs": "markdox lib/djv.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "djv": "^0.1.2",
     "json-schema-test-suite": "0.0.10",
+    "markdox": "^0.1.10",
     "mocha": "^2.4.5"
   }
 }

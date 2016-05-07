@@ -5,6 +5,78 @@ Dynamic Json Schema Instance
 This package contains json-schema utilty for instantiate models based on schema.
 This is a part of **djv** packages aimed to work with json-schema. In future (~ 1 year) all **djv** packages will be unified into single package with **djv** scope.
 
+## API
+
+```
+var jsonSchema = {
+    "common": {
+        "properties": {
+            "type": {
+                "enum": ["common"]
+            }
+        },
+        "required": [
+            "type"
+        ]
+    }
+};
+
+var env = new djvi();
+env.addSchema('test', jsonSchema);
+env.instance('test#/common');
+// => { type: 'common' }
+```
+
+### instance(name)
+
+check if object correspond to schema
+```
+env.instance('test#/common');
+// => { type: 'common' }
+```
+
+### addSchema(name, schema)
+
+add schema to djv environment
+
+```
+env.addSchema('test', jsonSchema);
+```
+
+### removeSchema(name)
+
+removes a schema or the whole structure from djv environment
+
+```
+env.removeSchema('test');
+```
+
+### resolve(name)
+
+resolves name by existing environment
+
+```
+env.resolve('test');
+// => { name: 'test', schema: {} }, fn: ... }
+```
+
+### export(name)
+
+exports the whole structure object from environment or by resolved name
+
+```
+env.export();
+// => { test: { name: 'test', schema: {}, ... } }
+```
+
+### import(config)
+
+imports all found structure objects to internal environment structure
+
+```
+env.import(config);
+```
+
 ## Concepts
 
 JSON Schema instantiator should generate `minimal` object, valid to a given schema.
