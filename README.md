@@ -5,6 +5,24 @@ Dynamic Json Schema Instance
 This package contains json-schema utilty for instantiate models based on schema.
 This is a part of **djv** packages aimed to work with json-schema. In future (~ 1 year) all **djv** packages will be unified into single package with **djv** scope.
 
+## Concepts
+
+JSON Schema instantiator should generate `minimal` object, valid to a given schema.
+
+- **not required** properties will be ommitted
+- **maximum** and **minimum** will be set up for given number
+- primitives schemas are instantiated with default values
+```
+null: null
+string: ''
+boolean: false
+number: 0
+integer: 0
+object: {}
+array: []
+```
+- **not** recursively changes negative schema to use different types
+
 ## API
 
 ```
@@ -76,24 +94,6 @@ imports all found structure objects to internal environment structure
 ```
 env.import(config);
 ```
-
-## Concepts
-
-JSON Schema instantiator should generate `minimal` object, valid to a given schema.
-
-- **not required** properties will be ommitted
-- **maximum** and **minimum** will be set up for given number
-- primitives schemas are instantiated with default values
-```
-null: null
-string: ''
-boolean: false
-number: 0
-integer: 0
-object: {}
-array: []
-```
-- **not** recursively changes negative schema to use different types
 
 ## TODO
 
