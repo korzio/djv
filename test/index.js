@@ -46,6 +46,30 @@ describe('djvi istance', function () {
             assert.deepEqual(env.instance('test#/common'), { type: 'common' });
             assert.deepEqual(env.instance('test'), {});
         });
+
+        it('should return unique object', function () {
+            var env = new djvi();
+            env.addSchema('test', jsonSchema);
+
+            var first = env.instance('test#/common');
+            var second = env.instance('test#/common');
+
+            assert.equal(first === second, false);
+            first.a = 1;
+            assert.equal(typeof second.a, 'undefined');
+        });
+
+        it('should return not unique object with a flag', function () {
+            var env = new djvi();
+            env.addSchema('test', jsonSchema);
+
+            var first = env.instance('test#/common', false);
+            var second = env.instance('test#/common', false);
+
+            assert.equal(first === second, true);
+            first.a = 1;
+            assert.equal(typeof second.a, 'number');
+        });
     });
 
     describe('export()', function(){

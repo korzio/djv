@@ -3,7 +3,21 @@
 Dynamic Json Schema Instance
 
 This package contains json-schema utilty for instantiate models based on schema.
-This is a part of **djv** packages aimed to work with json-schema. In future (~ 1 year) all **djv** packages will be unified into single package with **djv** scope.
+This is a part of **djv** packages aimed to work with json-schema. In future (~1 year) all **djv** packages will be unified into single package with **djv** scope.
+
+## Usage
+
+For node - package is not minimized
+
+```
+npm install djvi
+```
+
+For browser
+
+```
+<script src="djvi/djvi.js"></script>
+```
 
 ## Concepts
 
@@ -11,7 +25,7 @@ JSON Schema instantiator should generate `minimal` object, valid to a given sche
 
 - **not required** properties will be ommitted
 - **maximum** and **minimum** will be set up for given number
-- primitives schemas are instantiated with default values
+- primitives **types** are instantiated with default values
 ```
 null: null
 string: ''
@@ -22,22 +36,55 @@ object: {}
 array: []
 ```
 - **not** recursively changes negative schema to use different types
+- **anyOf** and **oneOf** are solved with first property instance (for **oneOf** it should be also checked with single matching only - it is not implemented yet)
+- [simple](http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.8) **dependency** instantiates only for required fields
+- **items** keyword instantiates an array with fit objects
+- **minItems, maxItems** instantiates an array with default types
+- Each instance is an unique object (Unless unique = false is not used)
+```
+env.instance('test#/common') !== env.instance('test#/common')
+```
+
+## Examples
+
+Primitives [types](https://github.com/json-schema/json-schema/wiki/Type) with default values
+
+```
+{"type":"number","default":100}
+// => 100
+
+{"type": "null"}
+// => null
+
+{"type": ["integer", "string"]}
+// => 0
+
+{"type": "array"}
+// => []
+```
+
+[All of](https://github.com/json-schema/json-schema/wiki/anyOf,-allOf,-oneOf,-not#allof) types
+```
+{ "allOf":[
+        {"type":"object","properties":{"title":{"type":"string"}},"required":["title"]},
+        {"type":"object","properties":{"amount":{"type":"number","default":1}},"required":["amount"]}
+]}
+// => {"title":"","amount":1}
+```
+
+[Items](https://github.com/json-schema/json-schema/wiki/additionalItems-and-items) keywords should be an array with default instances
+```
+{"minItems": 1}
+// => [{}]
+
+{"items":[{"type":"integer"},{"type":"string"}]}
+// => [0, ""]
+```
 
 ## API
 
 ```
-var jsonSchema = {
-    "common": {
-        "properties": {
-            "type": {
-                "enum": ["common"]
-            }
-        },
-        "required": [
-            "type"
-        ]
-    }
-};
+var jsonSchema = {"common":{"properties":{"type":{"enum":["common"]}},"required":["type"]}};
 
 var env = new djvi();
 env.addSchema('test', jsonSchema);
@@ -45,7 +92,7 @@ env.instance('test#/common');
 // => { type: 'common' }
 ```
 
-### instance(name)
+### instance(name, unique)
 
 instantiate an object that corresponds to a schema
 ```
@@ -55,7 +102,7 @@ env.instance('test#/common');
 
 ### addSchema(name, schema)
 
-add a schema to djv environment
+add a schema to djvi environment
 
 ```
 env.addSchema('test', jsonSchema);
@@ -63,7 +110,7 @@ env.addSchema('test', jsonSchema);
 
 ### removeSchema(name)
 
-removes a schema or the whole structure from djv environment
+removes a schema or the whole structure from djvi environment
 
 ```
 env.removeSchema('test');
@@ -97,15 +144,19 @@ env.import(config);
 
 ## TODO
 
-- each instance should be unique? Clone can help
 - add posibility to customize generators
+- make a webpack
 - add `allOf` and other cases to `not` schema
 - add `oneOf` complex example/generator
 - add regexp instantiate (pattern and patternProperties tests)
 - add uniqueItems custom logic
+- add format generators
+- move tests to separated repo/package
 
 ## Resources
 
+- [JSON Schema wiki](https://github.com/json-schema/json-schema/wiki)
+- [JSON schema specification](tools.ietf.org/html/draft-zyp-json-schema-04)
 - [djv](https://github.com/korzio/djv)
 - [djvu](https://github.com/korzio/djvu)
 - [JSON Schema Instantiator tests](https://github.com/tomarad/JSON-Schema-Instantiator/blob/master/tests/tests.js)

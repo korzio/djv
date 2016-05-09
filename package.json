@@ -2,13 +2,13 @@
   "name": "djvi",
   "version": "0.0.1-alpha.0",
   "description": "Json Schema Instance",
-  "main": "lib/djv.js",
+  "main": "lib/djvi.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha",
-    "docs": "markdox lib/djv.js"
+    "docs": "markdox lib/djvi.js"
   },
   "repository": {
     "type": "git",

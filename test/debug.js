@@ -1,5 +1,5 @@
 var assert = require('assert');
-var djv = require('../');
+var djvi = require('../');
 
 var jsonSchema = {
     "common": {
@@ -14,7 +14,7 @@ var jsonSchema = {
     }
 };
 
-var env = new djv();
+var env = new djvi();
 env.addSchema('test', jsonSchema);
 
 assert.deepEqual(env.instance('test#/common'), { type: 'common' });
