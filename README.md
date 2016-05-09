@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/korzio/djvi.svg?branch=master)](https://travis-ci.org/korzio/djvi)
+[![Join the chat at https://gitter.im/korzio/djvi](https://badges.gitter.im/korzio/djvi.svg)](https://gitter.im/korzio/djvi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # djvi
-
-[![Join the chat at https://gitter.im/korzio/djvi](https://badges.gitter.im/korzio/djvi.svg)](https://gitter.im/korzio/djvi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Dynamic Json Schema Instance
 
