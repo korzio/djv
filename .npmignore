@@ -1,0 +1,5 @@
+.travis.yml
+.vscode
+.npmignore
+webpack.config.js
+test/

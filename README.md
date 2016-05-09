@@ -5,7 +5,7 @@
 
 Dynamic Json Schema Instance
 
-This package contains json-schema utilty for instantiate models based on schema.
+This package contains json-schema utility for instantiating models based on [schema](tools.ietf.org/html/draft-zyp-json-schema-04).
 This is a part of **djv** packages aimed to work with json-schema. In future (~1 year) all **djv** packages will be unified into single package with **djv** scope.
 
 ## Usage
@@ -20,6 +20,17 @@ For browser
 
 ```
 <script src="djvi/djvi.js"></script>
+```
+
+Use environment
+
+```
+var jsonSchema = {"common":{"properties":{"type":{"enum":["common"]}},"required":["type"]}};
+
+var env = new djvi();
+env.addSchema('test', jsonSchema);
+env.instance('test#/common');
+// => { type: 'common' }
 ```
 
 ## Concepts
@@ -75,7 +86,7 @@ Primitives [types](https://github.com/json-schema/json-schema/wiki/Type) with de
 // => {"title":"","amount":1}
 ```
 
-[Items](https://github.com/json-schema/json-schema/wiki/additionalItems-and-items) keywords should be an array with default instances
+[Items](https://github.com/json-schema/json-schema/wiki/additionalItems-and-items) keywords should instantiate an array with objects
 ```
 {"minItems": 1}
 // => [{}]
@@ -85,15 +96,6 @@ Primitives [types](https://github.com/json-schema/json-schema/wiki/Type) with de
 ```
 
 ## API
-
-```
-var jsonSchema = {"common":{"properties":{"type":{"enum":["common"]}},"required":["type"]}};
-
-var env = new djvi();
-env.addSchema('test', jsonSchema);
-env.instance('test#/common');
-// => { type: 'common' }
-```
 
 ### instance(name, unique)
 
