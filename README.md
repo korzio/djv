@@ -1,5 +1,7 @@
 # djvi
 
+[![Join the chat at https://gitter.im/korzio/djvi](https://badges.gitter.im/korzio/djvi.svg)](https://gitter.im/korzio/djvi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Dynamic Json Schema Instance
 
 This package contains json-schema utilty for instantiate models based on schema.
