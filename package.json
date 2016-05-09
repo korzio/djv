@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "mocha",
+    "build": "webpack",
     "docs": "markdox lib/djvi.js"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "djv": "^0.1.2",
     "json-schema-test-suite": "0.0.10",
     "markdox": "^0.1.10",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "webpack": "^1.13.0"
   }
 }

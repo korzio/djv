@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/korzio/djvi.svg?branch=master)](https://travis-ci.org/korzio/djvi)
+
 # djvi
 
 Dynamic Json Schema Instance
@@ -142,10 +144,16 @@ imports all found structure objects to internal environment structure
 env.import(config);
 ```
 
+### utils()
+
+returns `{ types, fieldTypes, fieldValidate, fieldFormat }` generators that can be overridden for use cases
+
+```
+env.utils();
+```
+
 ## TODO
 
-- add posibility to customize generators
-- make a webpack
 - add `allOf` and other cases to `not` schema
 - add `oneOf` complex example/generator
 - add regexp instantiate (pattern and patternProperties tests)
