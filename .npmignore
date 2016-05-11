@@ -2,6 +2,5 @@
 .vscode
 .npmignore
 webpack.config.js
-lib/
 test/
 dist/

@@ -223,6 +223,8 @@ investigate c++ inline functions
 - add tests to json schema suite and json-schema-benchmark
 - [compile with google closure or smth](https://www.npmjs.com/package/google-closure-compiler)
 - $data
+- add posibility to customize validators
+- add nested tests
 - ajv implementation
 - add tests to [resolve](http://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.4)
 

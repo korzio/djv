@@ -2,7 +2,7 @@
   "name": "djv",
   "version": "0.1.2",
   "description": "dynamic json-schema validator",
-  "main": "djv.js",
+  "main": "lib/djv.js",
   "scripts": {
     "test": "mocha",
     "build": "webpack",
