@@ -2,21 +2,27 @@ var assert = require('assert');
 var djv = require('../');
 
 var jsonSchema = {
-    "common": {
-        "properties": {
-            "type": {
-                "enum": ["common"]
-            }
-        },
-        "required": [
-            "type"
-        ]
+  "selection": {
+    "some": {
+      "type": "array",
+      "minItems": 1
+    },
+    "none": {
+      "enum": [
+        "none"
+      ]
+    },
+    "all": {
+      "enum": [
+        "all"
+      ]
     }
+  }
 };
 
 var env = new djv();
-env.addSchema('test', jsonSchema);
+env.addSchema('words', jsonSchema);
 
 var commonObj = { type: 'common' };
-var errors = env.validate('test#/common', commonObj);
+var errors = env.validate('words#/selection/some', 'some');
 assert.equal(errors, undefined);
