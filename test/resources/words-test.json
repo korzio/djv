@@ -1,0 +1,18 @@
+{
+  "selection": {
+    "some": {
+      "type": "array",
+      "minItems": 1
+    },
+    "none": {
+      "enum": [
+        "none"
+      ]
+    },
+    "all": {
+      "enum": [
+        "all"
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "widget": {
+    "type": "string",
+    "pattern": "^(?!.*[-]ext$)widget-.*$"
+  },
+  "model": {
+    "type": "string",
+    "pattern": "^todo$"
+  },
+  "lib": {
+    "type": "string",
+    "pattern": "^lib-"
+  },
+  "endpoint": {
+    "type": "string",
+    "pattern": "^data-"
+  },
+  "extension": {
+    "type": "string",
+    "pattern": "^widget-.*-ext$"
+  },
+  "ui": {
+    "type": "string",
+    "pattern": "^ui-"
+  },
+  "vendor": {
+    "type": "string",
+    "oneOf": [
+      {
+        "$ref": "nameConvention#/vendor/references/@vendor"
+      },
+      {
+        "$ref": "nameConvention#/vendor/references/uib"
+      },
+      {
+        "$ref": "nameConvention#/vendor/references/angular"
+      }
+    ],
+    "references": {
+      "@vendor": {
+        "type": "string",
+        "pattern": "^@vendor"
+      },
+      "uib": {
+        "type": "string",
+        "pattern": "^uib-"
+      },
+      "angular": {
+        "type": "string",
+        "pattern": "^angular"
+      }
+    }
+  }
+}
