@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/korzio/djv#readme",
   "devDependencies": {
+    "json-schema-benchmark": "^1.0.2",
     "json-schema-test-suite": "^0.0.10",
     "markdox": "^0.1.10",
     "mocha": "^2.4.5",

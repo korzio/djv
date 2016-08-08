@@ -56,6 +56,18 @@ describe('djv', function () {
             var errors = env.validate('test#/common', customObj);
             assert.equal(typeof errors, 'string');
         });
+
+        it('should validate an object by a given schema without namespace', function () {
+            var env = new djv();
+
+            var customObj = { type: 'custom' };
+            var errors = env.validate(jsonSchema.common, customObj);
+            assert.equal(typeof errors, 'string');
+
+            var commonObj = { type: 'common' };
+            var errors = env.validate(jsonSchema.common, commonObj);
+            assert.equal(errors, undefined);
+        });
     });
 
     describe('export()', function(){
