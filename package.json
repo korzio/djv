@@ -1,10 +1,10 @@
 {
   "name": "djv",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jasmine JASMINE_CONFIG_PATH=package.json",
     "build": "webpack",
     "docs": "markdox lib/djv.js"
   },
@@ -27,10 +27,16 @@
   },
   "homepage": "https://github.com/korzio/djv#readme",
   "devDependencies": {
+    "jasmine": "^2.5.2",
     "json-schema-benchmark": "^1.0.2",
     "json-schema-test-suite": "^0.0.10",
     "markdox": "^0.1.10",
-    "mocha": "^2.4.5",
     "webpack": "^1.12.14"
-  }
+  },
+  "spec_dir": "test",
+  "spec_files": [
+    "**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
 }

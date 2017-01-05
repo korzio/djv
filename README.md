@@ -5,6 +5,9 @@
 
 Dynamic Json Schema Validator
 
+This package contains [json-schema](tools.ietf.org/html/draft-zyp-json-schema-04) utility for validating objects across schemas.
+This is a part of **djv** packages aimed to work with json-schema.
+
 ## Installation
 
   `npm install djv`
@@ -218,14 +221,11 @@ investigate c++ inline functions
 
 ### General
 
-- variables names with quotes, aka properties '%%%%' will throw error
 - [asmjs compile step](http://ejohn.org/blog/asmjs-javascript-compile-target/)
-- add tests to json schema suite and json-schema-benchmark
 - [compile with google closure or smth](https://www.npmjs.com/package/google-closure-compiler)
 - $data
 - add posibility to customize validators
 - add nested tests
-- ajv implementation
 - add tests to [resolve](http://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.4)
 
 -->
@@ -235,3 +235,5 @@ investigate c++ inline functions
 - [github source code](https://github.com/korzio/djv)
 - [npm package](https://www.npmjs.com/package/djv)
 - [schema ids](http://spacetelescope.github.io/understanding-json-schema/basics.html#declaring-a-unique-identifier)
+- [djvi](https://github.com/korzio/djv) instantiate objects by schema definition
+- [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
