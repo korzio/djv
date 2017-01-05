@@ -131,7 +131,7 @@ describe('verify test suite loads all json test files', function () {
 describe('validator tests', function () {
     var validatorResults = [];
 
-    after(function () {
+    afterEach(function () {
         validatorResults.forEach(function (validator) {
             console.log('\n******************************');
             console.log('validator: %s (%s)', validator.name, validator.draft);
