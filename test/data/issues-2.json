@@ -1,0 +1,46 @@
+[
+  {
+    "description": "issues-2-semver-example",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        },
+        "patch": {
+          "type": "integer"
+        },
+        "prerelease": {
+          "type": "array",
+          "items": {
+            "$ref": "#/prerelease"
+          }
+        },
+        "meta": {
+          "pattern": "^[0 -9A-Za-z-]+$"
+        }
+      },
+      "required": [
+        "major",
+        "minor",
+        "patch"
+      ],
+      "prerelease": {
+        "pattern": "^(?: 0[a-zA-Z]*|[a-zA-Z1-9][0 -9A-Za-z-]*)$"
+      }
+    },
+    "tests": [
+      {
+        "description": "should instantiate minimal valid semver",
+        "data": {
+          "major": 0,
+          "minor": 0,
+          "patch": 0
+        }
+      }
+    ]
+  }
+]
