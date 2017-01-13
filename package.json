@@ -31,11 +31,12 @@
     "json-schema-benchmark": "^1.0.2",
     "json-schema-test-suite": "^0.0.10",
     "markdox": "^0.1.10",
+    "measured": "^1.1.0",
     "webpack": "^1.12.14"
   },
   "spec_dir": "test",
   "spec_files": [
-    "**/*.js"
+    "**/json-schema-test-suite.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false

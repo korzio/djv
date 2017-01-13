@@ -1,6 +1,7 @@
 var assert = require('assert');
 var djv = require('../');
 var jsonSchemaTestSuite = require('json-schema-test-suite');
+var measure = require('../lib/measured');
 
 var assert = require('assert'),
     glob = require('glob'),
@@ -19,6 +20,7 @@ var factory = function (schema, options) {
         validate: function (json) {
             try {
                 var env = new djv();
+                env.stats = measure.stats;
 
                 Object.keys(refs).forEach(function (uri) {
                     env.addSchema(uri, refs[uri]);
@@ -27,12 +29,12 @@ var factory = function (schema, options) {
 
                 var errors = env.validate('test', json);
 
-                if (schema.lookup) {
+                /*if (schema.lookup) {
                     console.log('---------');
                     console.log(schema, json);
                     console.log(errors);
                     console.log(JSON.stringify(env));
-                }
+                }*/
 
                 return !errors ? { valid: true } : { valid: false, errors: [errors] };
             } catch (err) {
@@ -138,6 +140,11 @@ describe('validator tests', function () {
             console.log('pass: ' + validator.results.pass);
             console.log('fail: ' + validator.results.fail);
         });
+    });
+
+    afterAll(function() {
+        measure.print();
+        console.info('done');
     });
 
     describe('djv validator tests', function () {
