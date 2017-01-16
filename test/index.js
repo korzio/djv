@@ -118,6 +118,25 @@ describe('djv', function () {
             assert.equal(typeof errors, 'string');
         });
 
+        it('should restore environment with references', function () {
+            var oldDjv = new djv();
+            var refSchema = require('json-schema-test-suite/tests/draft4/allOf.json')[0].schema;
+
+            oldDjv.addSchema('test', refSchema);
+
+            var exported = oldDjv.export();
+            var env = new djv();
+            env.import(exported);
+
+            var commonObj = { type: 'common' };
+            var errors = env.validate('test', { foo: "baz", bar: 2 });
+            assert.equal(errors, undefined);
+
+            var customObj = { type: 'custom' };
+            errors = env.validate('test', { foo: "baz" });
+            assert.equal(typeof errors, 'string');
+        });
+
         it('should restore partial environment', function () {
             var oldDjv = new djv();
             oldDjv.addSchema('test', jsonSchema);
