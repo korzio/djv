@@ -3,14 +3,18 @@
 
 # djv
 
-Dynamic Json Schema Validator
+Dynamic JSON Schema Validator
 
-This package contains [json-schema](tools.ietf.org/html/draft-zyp-json-schema-04) utility for validating objects across schemas.
+Current package supports **JSON Schema v4** and it contains utils for validating objects against schemas.
 This is a part of **djv** packages aimed to work with json-schema.
+
+- [djv](https://github.com/korzio/djv) validate object against schemas
+- [djvi](https://github.com/korzio/djvi) instantiate objects by schema definition
+- [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
 
 ## Installation
 
-  `npm install djv`
+`npm install djv`
 
 ## Usage
 
@@ -40,13 +44,22 @@ env.validate('test#/common', { type: 'custom' });
 
 ## API
 
-<!-- Start lib/djv.js -->
+### addSchema(name: String, schema: Object) -> resolved: Object
 
-### validate(name, object)
+Add a schema to a current djv environment,
 
-check if object corresponds to schema
+```
+env.addSchema('test', jsonSchema);
+/* => {
+    fn: function f0(data){...}
+    name: 'test'
+    schema: ...
+} */
+```
 
-#### Examples:
+### validate(name: String, object: Object) -> error: String
+
+Check if object is valid against the schema
 
 ```
 env.validate('test#/common', { type: 'common' });
@@ -56,116 +69,57 @@ env.validate('test#/common', { type: 'custom' });
 // => 'required: data'
 ```
 
-#### Params:
+where
 
-* **String** *name*
-* **Object** *object*
+* *name* - schema path in current environment
+* *object* - object to validate
+* *error* - undefined if it is valid
 
-#### Return:
+### removeSchema(name: String)
 
-* **String** error - undefined if it is valid
-
-### addSchema(name, schema)
-
-add schema to djv environment
-
-#### Examples:
-
-```
-env.addSchema('test', jsonSchema);
-```
-
-#### Params:
-
-* **String** *name*
-* **Object** *schema*
-
-#### Return:
-
-* **resolved**
-
-### removeSchema(name)
-
-removes a schema or the whole structure from djv environment
-
-#### Examples:
+Remove a schema or the whole structure from the djv environment
 
 ```
 env.removeSchema('test');
 ```
 
-#### Params:
+### resolve(name: String)
 
-* **String** *name*
-
-### resolve(name)
-
-resolves name by existing environment
-
-#### Examples:
+Resolve the name by existing environment
 
 ```
 env.resolve('test');
 // => { name: 'test', schema: {} }, fn: ... }
 ```
 
-#### Params:
+### export(name: String?) -> state: Object
 
-* **String** *name*
-
-#### Return:
-
-* **resolved**
-
-### export(name)
-
-exports the whole structure object from environment or by resolved name
-
-#### Examples:
+Exports the whole structure object from environment or resolved by a given name
 
 ```
 env.export();
 // => { test: { name: 'test', schema: {}, ... } }
 ```
 
-#### Params:
+where **state** is an internal structure or only resolved schema object
 
-* **String** *name*
+### import(config: Object)
 
-#### Return:
+Imports all found structure objects to internal environment structure
 
-* **serializedInternalState**
-
-### import(config)
-
-imports all found structure objects to internal environment structure
-#### Examples:
 ```
 env.import(config);
 ```
-#### Params:
-
-* **Object** *config* - internal structure or only resolved schema object
-
-<!-- End lib/djv.js -->
 
 ## Tests
 
-  `npm test`
+```
+npm test
+```
 
 <!---
 
 ## What relative tasks can be? Why use json-schema?
-
-- Instantiate
-- Validate
-- Randomize
-- Models like objectmodel validation or any format, json-schema object model
-- [Validation for React](https://facebook.github.io/react/docs/reusable-components.html)
-- RAML
-- XSLT-for json
-
-## How it works
 
 ### Meta programming
 
@@ -213,8 +167,6 @@ investigate c++ inline functions
 ### Todo Optimizations List
 
 - generatedNonRefFunctions 1377, generatedFunctionsUsed 3003 - make fn.if function, and transport scope/context/state to generate function
-- { count: 361, key: 'if (Array.isArray($1) && $1.some(function(item, key) {            key = JSON.stringify(item);            if(i1.hasOwnProperty(key))            return true;            i1[key] = true;        }))' }, // http://jsperf.com/array-some-vs-loop/5
-- { count: 181, key: 'if (!/[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?/.test(%s))' }
 - update ref usage for non-ref inline functions - if a linke does not contain refs inside (can be easily checked by json.stringify), it should be a regular if-else consequence as well - Optimize small schemas (like in allOf example - don't generate function, althought return context)
 - [if optimization](http://jsperf.com/ifs-vs-expression)?
 - [killing optimization](http://habrahabr.ru/company/mailru/blog/273839/)
@@ -229,11 +181,3 @@ investigate c++ inline functions
 - add tests to [resolve](http://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.4)
 
 -->
-
-## Resources
-
-- [github source code](https://github.com/korzio/djv)
-- [npm package](https://www.npmjs.com/package/djv)
-- [schema ids](http://spacetelescope.github.io/understanding-json-schema/basics.html#declaring-a-unique-identifier)
-- [djvi](https://github.com/korzio/djv) instantiate objects by schema definition
-- [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
