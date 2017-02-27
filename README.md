@@ -117,6 +117,10 @@ env.import(config);
 npm test
 ```
 
+## References
+
+* [JSON Schema Benchmark](https://github.com/ebdrup/json-schema-benchmark)
+
 <!---
 
 ## What relative tasks can be? Why use json-schema?
