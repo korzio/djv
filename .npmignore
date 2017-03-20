@@ -2,5 +2,6 @@
 .vscode
 .npmignore
 webpack.config.js
+log.log
 test/
 dist/
