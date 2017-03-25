@@ -14,11 +14,15 @@ This is a part of **djv** packages aimed to work with json-schema.
 
 ## Installation
 
-`npm install djv`
+```
+npm install djv
+```
 
 or
 
-`<script src="djv.js"></script>`
+```html
+<script src="djv.js"></script>
+```
 
 ## Usage
 
