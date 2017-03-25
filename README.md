@@ -26,7 +26,7 @@ or
 
 ## Usage
 
-```
+```javascript
 var env = new djv();
 var jsonSchema = {
     "common": {
@@ -56,7 +56,7 @@ env.validate('test#/common', { type: 'custom' });
 
 Add a schema to a current djv environment,
 
-```
+```javascript
 env.addSchema('test', jsonSchema);
 /* => {
     fn: function f0(data){...}
@@ -69,7 +69,7 @@ env.addSchema('test', jsonSchema);
 
 Check if object is valid against the schema
 
-```
+```javascript
 env.validate('test#/common', { type: 'common' });
 // => undefined
 
@@ -87,7 +87,7 @@ where
 
 Remove a schema or the whole structure from the djv environment
 
-```
+```javascript
 env.removeSchema('test');
 ```
 
@@ -95,7 +95,7 @@ env.removeSchema('test');
 
 Resolve the name by existing environment
 
-```
+```javascript
 env.resolve('test');
 // => { name: 'test', schema: {} }, fn: ... }
 ```
@@ -104,7 +104,7 @@ env.resolve('test');
 
 Exports the whole structure object from environment or resolved by a given name
 
-```
+```javascript
 env.export();
 // => { test: { name: 'test', schema: {}, ... } }
 ```
@@ -115,7 +115,7 @@ where **state** is an internal structure or only resolved schema object
 
 Imports all found structure objects to internal environment structure
 
-```
+```javascript
 env.import(config);
 ```
 
