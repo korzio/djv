@@ -16,6 +16,10 @@ This is a part of **djv** packages aimed to work with json-schema.
 
 `npm install djv`
 
+or
+
+`<script src="djv.js"></script>`
+
 ## Usage
 
 ```
