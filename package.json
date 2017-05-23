@@ -1,5 +1,5 @@
 {
-  "name": "djv",
+  "name": "djv-tmp",
   "version": "1.0.0-beta.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
