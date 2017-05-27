@@ -1,6 +1,7 @@
 .travis.yml
 .vscode
 .npmignore
+.eslintrc.json
 webpack.config.js
 log.log
 test/
