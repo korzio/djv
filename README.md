@@ -102,7 +102,7 @@ env.resolve('test');
 
 ### export(name: String?) -> state: Object
 
-Exports the whole structure object from environment or resolved by a given name
+Export the whole structure object from environment or resolved by a given name
 
 ```javascript
 env.export();
@@ -113,10 +113,23 @@ where **state** is an internal structure or only resolved schema object
 
 ### import(config: Object)
 
-Imports all found structure objects to internal environment structure
+Import all found structure objects to internal environment structure
 
 ```javascript
 env.import(config);
+```
+
+### addFormat(config: Object)
+
+Add formatter to djv environment. When a string is passed it is interpreted as an expression which when returns `true` goes with an error, when returns `false` then a property is valid. When a function is passed it will be executed during schema compilation with a current schema and template helper arguments.
+
+```javascript
+env.addFormat('UpperCase', '%s !== %s.toUpperCase()');
+// or
+env.addFormat('isOk', function(schema, tpl){
+  return `!${schema.isOk}`;
+});
+env.validate('ok', 'valid') // => undefined if schema contains isOk property
 ```
 
 ## Tests
