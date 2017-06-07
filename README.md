@@ -119,7 +119,7 @@ Import all found structure objects to internal environment structure
 env.import(config);
 ```
 
-### addFormat(config: Object)
+### addFormat(name: String, formatter: String/Function)
 
 Add formatter to djv environment. When a string is passed it is interpreted as an expression which when returns `true` goes with an error, when returns `false` then a property is valid. When a function is passed it will be executed during schema compilation with a current schema and template helper arguments.
 
