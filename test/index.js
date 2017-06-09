@@ -188,5 +188,94 @@ describe('djv', () => {
       assert.equal(env.validate('ok', 'valid'), undefined);
       assert.equal(typeof env.validate('notok', 'invalid'), 'string');
     });
+
+    it('should be configurable with formats option passed as argument to environment constructor', () => {
+      const env = djv({
+        formats: {
+          isOk: schema => `!${schema.isOk}`
+        }
+      });
+
+      env.addSchema('ok', {
+        format: 'isOk',
+        type: 'string',
+        isOk: true
+      });
+      env.addSchema('notok', {
+        format: 'isOk',
+        type: 'string'
+      });
+
+      assert.equal(env.validate('ok', 'valid'), undefined);
+      assert.equal(typeof env.validate('notok', 'invalid'), 'string');
+    });
+  });
+
+  describe('setErrorHandler()', () => {
+    it('should add custom error handler from initial configuration', () => {
+      const env = djv({ errorHandler: () => 'return {};' });
+
+      env.addSchema('test', {
+        type: 'string'
+      });
+
+      assert.equal(env.validate('test', 'valid'), undefined);
+      assert.equal(typeof env.validate('test', 12), 'object');
+    });
+
+    it('should show all errors with custom error handler', () => {
+      const errors = [];
+      const env = djv({
+        errorHandler(type) {
+          errors.push({
+            type,
+            schema: this.schema[this.schema.length - 1],
+            data: this.data[this.data.length - 1]
+          });
+
+          return ';';
+        }
+      });
+
+      env.addSchema('test', {
+        type: 'object',
+        format: 'uppercase'
+      });
+
+      assert.equal(errors.length, 2);
+    });
+
+    it('should have private errors variable when errorHandler is used so multi errors output should work', () => {
+      const env = djv({
+        errorHandler(type) {
+          return `errors.push({
+            type: '${type}',
+            schema: '${this.schema[this.schema.length - 1]}',
+            data: '${this.data[this.data.length - 1]}'
+          });`;
+        }
+      });
+
+      env.addSchema('invalid', {
+        type: 'object',
+        format: 'uppercase'
+      });
+      assert.equal(env.validate('invalid', 'invalid').length, 2);
+
+      env.addSchema('valid', {
+        format: 'uppercase'
+      });
+      assert.equal(env.validate('valid', 'VALID'), undefined);
+    });
+
+    it('should be configurable with setErrorHandler method', () => {
+      const env = djv();
+      env.addSchema('invalid', { format: 'uppercase' });
+      assert.equal(typeof env.validate('invalid', 'invalid'), 'string');
+      env.removeSchema('invalid');
+      env.setErrorHandler(() => 'return null;');
+      env.addSchema('invalid', { format: 'uppercase' });
+      assert.equal(typeof env.validate('invalid', 'invalid'), 'object');
+    });
   });
 });
