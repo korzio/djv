@@ -7,8 +7,8 @@
     "test": "npm run jasmine && npm run lint",
     "jasmine": "jasmine JASMINE_CONFIG_PATH=package.json",
     "build": "webpack",
-    "docs": "markdox lib/djv.js",
-    "lint": "eslint ./lib"
+    "lint": "eslint ./lib",
+    "changelog": "generate-changelog"
   },
   "repository": {
     "type": "git",

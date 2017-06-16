@@ -52,7 +52,7 @@ env.validate('test#/common', { type: 'custom' });
 
 ## API
 
-### addSchema(name: String, schema: Object) -> resolved: Object
+### addSchema(name: string, schema: object?) -> resolved: object
 
 Add a schema to a current djv environment,
 
@@ -65,7 +65,7 @@ env.addSchema('test', jsonSchema);
 } */
 ```
 
-### validate(name: String, object: Object) -> error: String
+### validate(name: string, object: object) -> error: string
 
 Check if object is valid against the schema
 
@@ -83,7 +83,7 @@ where
 * *object* - object to validate
 * *error* - undefined if it is valid
 
-### removeSchema(name: String)
+### removeSchema(name: string)
 
 Remove a schema or the whole structure from the djv environment
 
@@ -91,7 +91,7 @@ Remove a schema or the whole structure from the djv environment
 env.removeSchema('test');
 ```
 
-### resolve(name: String)
+### resolve(name: string?)
 
 Resolve the name by existing environment
 
@@ -100,7 +100,7 @@ env.resolve('test');
 // => { name: 'test', schema: {} }, fn: ... }
 ```
 
-### export(name: String?) -> state: Object
+### export(name: string?) -> state: object
 
 Export the whole structure object from environment or resolved by a given name
 
@@ -111,7 +111,7 @@ env.export();
 
 where **state** is an internal structure or only resolved schema object
 
-### import(config: Object)
+### import(config: object)
 
 Import all found structure objects to internal environment structure
 
@@ -119,7 +119,7 @@ Import all found structure objects to internal environment structure
 env.import(config);
 ```
 
-### addFormat(name: String, formatter: String/Function)
+### addFormat(name: string, formatter: string/function)
 
 Add formatter to djv environment. When a string is passed it is interpreted as an expression which when returns `true` goes with an error, when returns `false` then a property is valid. When a function is passed it will be executed during schema compilation with a current schema and template helper arguments.
 
@@ -132,7 +132,7 @@ env.addFormat('isOk', function(schema, tpl){
 env.validate('ok', 'valid') // => undefined if schema contains isOk property
 ```
 
-### setErrorHandler(errorHandler: Function)
+### setErrorHandler(errorHandler: function)
 
 Specify custom error handler which will be used in generated functions when problem found.
 The function should return a string expression, which will be executed when generated validator function is executed. The simpliest use case is the default one @see `template/defaultErrorHandler`
@@ -218,7 +218,7 @@ investigate c++ inline functions
 
 ### Todo Optimizations List
 
-- generatedNonRefFunctions 1377, generatedFunctionsUsed 3003 - make fn.if function, and transport scope/context/state to generate function
+- generatedNonReffunctions 1377, generatedfunctionsUsed 3003 - make fn.if function, and transport scope/context/state to generate function
 - update ref usage for non-ref inline functions - if a linke does not contain refs inside (can be easily checked by json.stringify), it should be a regular if-else consequence as well - Optimize small schemas (like in allOf example - don't generate function, althought return context)
 - [if optimization](http://jsperf.com/ifs-vs-expression)?
 - [killing optimization](http://habrahabr.ru/company/mailru/blog/273839/)

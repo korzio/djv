@@ -34,7 +34,7 @@
 ##### Code Style Changes
 
 * **utilities:** Clean utilities format #14 ([6c994916](https://github.com/korzio/djv/commit/6c994916aa619ac44505a57a3fafb679d2760b40))
-* **template:** 
+* **template:**
   * Rename fn to tpl as in other places #15 ([85217a25](https://github.com/korzio/djv/commit/85217a25df97eff618043f18ef2055c3d3df22cb))
   * Rename template instance to tpl #13 ([def56c91](https://github.com/korzio/djv/commit/def56c91d3c4c321fd388aea18bdf43ec86c1fe4))
 * **lint:** Temporary fix global require with lint comment ([489717fe](https://github.com/korzio/djv/commit/489717fe66e586368abdcebee1535e7617b84390))
