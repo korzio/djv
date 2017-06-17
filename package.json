@@ -1,6 +1,6 @@
 {
   "name": "djv",
-  "version": "1.1.0-alpha.1",
+  "version": "1.1.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
   "scripts": {
