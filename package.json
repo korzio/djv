@@ -1,11 +1,11 @@
 {
   "name": "djv",
-  "version": "1.1.0-alpha.0",
+  "version": "1.1.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
   "scripts": {
-    "test": "npm run jasmine && npm run lint",
-    "jasmine": "jasmine JASMINE_CONFIG_PATH=package.json",
+    "test": "npm run test:jasmine && npm run lint",
+    "test:jasmine": "jasmine JASMINE_CONFIG_PATH=package.json",
     "build": "webpack",
     "lint": "eslint ./lib",
     "changelog": "generate-changelog"
@@ -28,6 +28,9 @@
   },
   "homepage": "https://github.com/korzio/djv#readme",
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
@@ -35,7 +38,7 @@
     "jasmine": "^2.5.2",
     "json-schema-benchmark": "^1.0.2",
     "json-schema-test-suite": "^0.0.10",
-    "webpack": "^1.12.14"
+    "webpack": "^2.6.1"
   },
   "spec_dir": "test",
   "spec_files": [
