@@ -14,7 +14,7 @@ This is a part of **djv** packages aimed to work with json-schema.
 
 ## Installation
 
-```
+```bash
 npm install djv
 ```
 
@@ -23,6 +23,11 @@ or
 ```html
 <script src="djv.js"></script>
 ```
+
+There are 2 versions of validator
+
+- `./lib/djv.js` a default one, not uglified and not transpiled
+- `./djv.js` a built one with a webpack, babel and uglify (preferrable for frontend)
 
 ## Usage
 
