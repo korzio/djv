@@ -151,14 +151,14 @@ It returns an expression 'return ...', so the output is an error string.
 ```javascript
 djv({ errorHandler: () => 'return { error: true };' }) // => returns an object
 djv({
- errorHandler: function customErrorHandler(errorType, property) {
-   return `errors.push({
-     type: '${type}',
-     schema: '${this.schema[this.schema.length - 1]}',
-     data: '${this.data[this.data.length - 1]}'
-   });
- }
-})`;
+  errorHandler(type) {
+    return `errors.push({
+      type: '${type}',
+      schema: '${this.schema[this.schema.length - 1]}',
+      data: '${this.data[this.data.length - 1]}'
+    });`;
+  }
+});
 ```
 When a custom error handler is used, the template body function adds a `error` variable inside a generated validator, which can be used to put error information. `errorType` is always passed to error handler function. Some validate utilities put extra argument, like f.e. currently processed property value. Inside the handler context is a templater instance, which contains `this.schema`, `this.data` paths arrays to identify validator position.
 @see test/index/setErrorHandler for more examples
