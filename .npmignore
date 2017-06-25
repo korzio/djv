@@ -1,8 +1,10 @@
 .travis.yml
-.vscode
-.npmignore
-.eslintrc.json
+CONTRIBUTING.md
 webpack.config.js
+.eslintrc.json
+.npmignore
 log.log
+
+.vscode
 test/
 dist/
