@@ -12,7 +12,7 @@ This guide contains the information about to contribute to djv library.
 
 ## How to <a name="howto"></a>
 
-This section contains help hints
+This section contains help hints how to
 
 ### Debug tests <a name="tests"></a>
 
