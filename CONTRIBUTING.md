@@ -43,6 +43,15 @@ When some of the tests are failing use the following `vscode` configuration
 },
 ```
 
+Put a debugger on `node_modules/json-schema-test-suite/index.js:147`
+```javascript
+testCase.result = validator.validate(testCase.data);
+// something like
+if(~testCase.description.indexOf('no additional items present')) {
+  debugger;
+}
+```
+
 ### Debug json-schema-test-suite <a name="test-suite"></a>
 
 For windows remove the following lines from `testRunner.js`
@@ -55,4 +64,18 @@ require('child_process').exec('rm -f ' + path.join(__dirname, '/reports/*.md'), 
   }
 ...
 });
+```
+
+Put a debugger on `node_modules\json-schema-benchmark\testRunner.js`
+
+:119 for generate
+
+:139 for validate
+
+```javascript
+givenResult = validator.test(validatorInstance, test.data, testSuite.schema);
+// something like
+if(~testSuite.description.indexOf('an array of schemas for items')) {
+  debugger;
+}
 ```
