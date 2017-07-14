@@ -79,3 +79,5 @@ if(~testSuite.description.indexOf('an array of schemas for items')) {
   debugger;
 }
 ```
+
+After run the `json-schema-benchmark` will generate report `djv.md` with failing tests.
