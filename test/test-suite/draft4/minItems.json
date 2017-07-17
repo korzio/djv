@@ -8,5 +8,15 @@
                 "data": [{}]
             }
         ]
+    },
+    {
+        "description": "minItems zero length",
+        "schema": {"minItems": 0},
+        "tests": [
+            {
+                "description": "empty array",
+                "data": []
+            }
+        ]
     }
 ]
