@@ -36,8 +36,8 @@
     "eslint-plugin-import": "^2.3.0",
     "generate-changelog": "^1.2.1",
     "jasmine": "^2.5.2",
-    "json-schema-benchmark": "^1.0.2",
-    "json-schema-test-suite": "^0.0.10",
+    "json-schema-benchmark": "https://github.com/ebdrup/json-schema-benchmark.git",
+    "json-schema-test-suite": "latest",
     "webpack": "^2.6.1"
   },
   "spec_dir": "test",
