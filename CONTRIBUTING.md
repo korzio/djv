@@ -120,12 +120,12 @@ git commit -m "release: Update package version to $VERSION #ISSUE"
 npm run changelog
 ```
 - [ ] Update Readme
-- [ ] Tag 1.1.1
+- [ ] Tag $VERSION
 ```sh
 git tag $VERSION
 ```
 - [ ] Merge release branch to master (via github)
-- [ ] Publish version 1.1.1
+- [ ] Publish version $VERSION
 ```sh
 npm publish
 ```
