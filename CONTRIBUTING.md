@@ -87,7 +87,7 @@ After run the `json-schema-benchmark` will generate report `djv.md` with failing
 
 To release a package to npm follow the steps
 
-- [ ] Create a relese ticket in github. Copy this checklist.
+- [ ] Create a release ticket in github. Copy this checklist.
 - [ ] Make a release branch
 ```sh
 VERSION="..."
