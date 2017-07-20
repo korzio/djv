@@ -124,6 +124,7 @@ npm run changelog
 ```sh
 git tag $VERSION
 ```
+- [ ] Merge release branch to master (via github)
 - [ ] Publish version 1.1.1
 ```sh
 npm publish
