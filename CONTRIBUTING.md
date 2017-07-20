@@ -4,11 +4,11 @@ This guide contains the information about to contribute to djv library.
 
 ## Table of contents <a name="content"></a>
 
-1. [Contributing to djv](#title)
-2. [Table of contents](#content)
-3. [How to](#howto)
-    1. [Debug tests](#tests)
-    2. [Debug json-schema-test-suite](#test-suite)
+* [Contributing to djv](#title)
+* [Table of contents](#content)
+* [How to](#howto)
+  * [Debug tests](#tests)
+  * [Debug json-schema-test-suite](#test-suite)
 
 ## How to <a name="howto"></a>
 

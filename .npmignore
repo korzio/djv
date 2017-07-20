@@ -4,7 +4,7 @@ webpack.config.js
 .eslintrc.json
 .npmignore
 log.log
+*.log
 
 .vscode
 test/
-dist/

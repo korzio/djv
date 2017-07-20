@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
+  devtool: 'source-map',
   entry: ['./lib/djv.js'],
   target: 'node',
   output: {
@@ -24,7 +25,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
     new webpack.optimize.ModuleConcatenationPlugin()
   ]
 };

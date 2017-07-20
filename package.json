@@ -4,11 +4,12 @@
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
   "scripts": {
-    "test": "npm run test:jasmine && npm run lint",
-    "test:jasmine": "jasmine JASMINE_CONFIG_PATH=package.json",
     "build": "webpack",
+    "changelog": "generate-changelog",
     "lint": "eslint ./lib",
-    "changelog": "generate-changelog"
+    "prepublishOnly": "npm run test && npm run build",
+    "test": "npm run test:jasmine && npm run lint",
+    "test:jasmine": "jasmine JASMINE_CONFIG_PATH=package.json"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "jasmine": "^2.5.2",
     "json-schema-benchmark": "https://github.com/ebdrup/json-schema-benchmark.git",
     "json-schema-test-suite": "latest",
+    "source-map-loader": "^0.2.1",
     "webpack": "^3.0.0"
   },
   "spec_dir": "test",
