@@ -38,7 +38,7 @@
     "jasmine": "^2.5.2",
     "json-schema-benchmark": "https://github.com/ebdrup/json-schema-benchmark.git",
     "json-schema-test-suite": "latest",
-    "webpack": "^2.6.1"
+    "webpack": "^3.0.0"
   },
   "spec_dir": "test",
   "spec_files": [
