@@ -9,6 +9,7 @@ This guide contains the information about to contribute to djv library.
 * [How to](#howto)
   * [Debug tests](#tests)
   * [Debug json-schema-test-suite](#test-suite)
+  * [Release](#release)
 
 ## How to <a name="howto"></a>
 
@@ -81,3 +82,50 @@ if(~testSuite.description.indexOf('an array of schemas for items')) {
 ```
 
 After run the `json-schema-benchmark` will generate report `djv.md` with failing tests.
+
+### Release <a name="release"></a>
+
+To release a package to npm follow the steps
+
+- [ ] Create a relese ticket in github. Copy this checklist.
+- [ ] Make a release branch
+```sh
+VERSION="..."
+VERSIONALPHA="$VERSION-alpha.0"
+ISSUE="..."
+
+git checkout -b release/$VERSION
+```
+- [ ] Update package.json version to $VERSIONALPHA and commit
+```sh
+git commit -m "release: Update package version to $VERSIONALPHA #ISSUE"
+```
+- [ ] Tag with the alpha version
+```sh
+git tag $VERSIONALPHA
+```
+- [ ] Publish test npm version $VERSIONALPHA
+```sh
+npm publish
+```
+- [ ] Check package internals - contains all required files (`lib/`, `README.md`, `./djv.js`, `package.json`, ...), no extra files
+- [ ] Check with updated json-schema test suite - check generated report
+- [ ] Check speed metrics
+- [ ] Update package.json version to $VERSION and commit
+```sh
+git commit -m "release: Update package version to $VERSION #ISSUE"
+```
+- [ ] Create a changelog
+```sh
+npm run changelog
+```
+- [ ] Update Readme
+- [ ] Tag 1.1.1
+```sh
+git tag $VERSION
+```
+- [ ] Publish version 1.1.1
+```sh
+npm publish
+```
+- [ ] Send update to gitter

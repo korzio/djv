@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/korzio/djv.svg?branch=master)](https://travis-ci.org/korzio/djv)
 [![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)](https://gitter.im/korzio/djv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# djv
+# djv <a name="title"></a>
 
 Dynamic JSON Schema Validator
 
@@ -12,7 +12,27 @@ This is a part of **djv** packages aimed to work with json-schema.
 - [djvi](https://github.com/korzio/djvi) instantiate objects by schema definition
 - [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
 
-## Installation
+Any contributions are welcome. Check [contribution guide](./CONTRIBUTING.md).
+
+## Table of contents <a name="content"></a>
+
+* [djv](#title)
+* [Table of contents](#content)
+* [Install](#install)
+* [Usage](#usage)
+* [API](#api)
+  * [addSchema](#addSchema)
+  * [validate](#validate)
+  * [removeSchema](#removeSchema)
+  * [resolve](#resolve)
+  * [export](#export)
+  * [import](#import)
+  * [addFormat](#addFormat)
+  * [setErrorHandler](#errorHandler)
+* [Tests](#tests)
+* [References](#references)
+
+## Install <a name="install"></a>
 
 ```bash
 npm install djv
@@ -29,7 +49,7 @@ There are 2 versions of validator
 - `./lib/djv.js` a default one, not uglified and not transpiled
 - `./djv.js` a built one with a webpack, babel and uglify (preferrable for frontend)
 
-## Usage
+## Usage <a name="usage"></a>
 
 ```javascript
 var env = new djv();
@@ -55,9 +75,9 @@ env.validate('test#/common', { type: 'custom' });
 // => 'required: data'
 ```
 
-## API
+## API <a name="api"></a>
 
-### addSchema(name: string, schema: object?) -> resolved: object
+### addSchema(name: string, schema: object?) -> resolved: object <a name="addSchema"></a>
 
 Add a schema to a current djv environment,
 
@@ -70,7 +90,7 @@ env.addSchema('test', jsonSchema);
 } */
 ```
 
-### validate(name: string, object: object) -> error: string
+### validate(name: string, object: object) -> error: string <a name="validate"></a>
 
 Check if object is valid against the schema
 
@@ -88,7 +108,7 @@ where
 * *object* - object to validate
 * *error* - undefined if it is valid
 
-### removeSchema(name: string)
+### removeSchema(name: string) <a name="removeSchema"></a>
 
 Remove a schema or the whole structure from the djv environment
 
@@ -96,7 +116,7 @@ Remove a schema or the whole structure from the djv environment
 env.removeSchema('test');
 ```
 
-### resolve(name: string?)
+### resolve(name: string?) <a name="resolve"></a>
 
 Resolve the name by existing environment
 
@@ -105,7 +125,7 @@ env.resolve('test');
 // => { name: 'test', schema: {} }, fn: ... }
 ```
 
-### export(name: string?) -> state: object
+### export(name: string?) -> state: object <a name="export"></a>
 
 Export the whole structure object from environment or resolved by a given name
 
@@ -116,7 +136,7 @@ env.export();
 
 where **state** is an internal structure or only resolved schema object
 
-### import(config: object)
+### import(config: object) <a name="import"></a>
 
 Import all found structure objects to internal environment structure
 
@@ -124,7 +144,7 @@ Import all found structure objects to internal environment structure
 env.import(config);
 ```
 
-### addFormat(name: string, formatter: string/function)
+### addFormat(name: string, formatter: string/function) <a name="addFormat"></a>
 
 Add formatter to djv environment. When a string is passed it is interpreted as an expression which when returns `true` goes with an error, when returns `false` then a property is valid. When a function is passed it will be executed during schema compilation with a current schema and template helper arguments.
 
@@ -137,7 +157,7 @@ env.addFormat('isOk', function(schema, tpl){
 env.validate('ok', 'valid') // => undefined if schema contains isOk property
 ```
 
-### setErrorHandler(errorHandler: function)
+### setErrorHandler(errorHandler: function) <a name="errorHandler"></a>
 
 Specify custom error handler which will be used in generated functions when problem found.
 The function should return a string expression, which will be executed when generated validator function is executed. The simpliest use case is the default one @see `template/defaultErrorHandler`
@@ -164,13 +184,13 @@ When a custom error handler is used, the template body function adds a `error` v
 @see test/index/setErrorHandler for more examples
 
 
-## Tests
+## Tests <a name="tests"></a>
 
 ```
 npm test
 ```
 
-## References
+## References <a name="references"></a>
 
 * [JSON Schema Benchmark](https://github.com/ebdrup/json-schema-benchmark)
 
