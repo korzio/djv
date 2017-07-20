@@ -1,3 +1,42 @@
+#### 1.1.1 (2017-07-20)
+
+##### Documentation Changes
+
+* **contributing:**
+  * Add benchmark suite debug description ([b0c05722](https://github.com/korzio/djv/commit/b0c05722c39477fc80fd95c189c6129ccc937c4e))
+  * Add contributing rules file ([3a0db5b4](https://github.com/korzio/djv/commit/3a0db5b4b2f4b04f27a20f479eaee043069daf15))
+* Fix text ([470ec0f0](https://github.com/korzio/djv/commit/470ec0f0f3ba5a3b0b31f8ca7b32bbd80baf0742))
+* Change changelog package version ([f7f44e88](https://github.com/korzio/djv/commit/f7f44e8807cfe2b029e98961841edcdb3dae9c99))
+* **error handle:** Fix example ([9b7a5545](https://github.com/korzio/djv/commit/9b7a554547e3cd1148f43c35d99ce3e1114a5983))
+
+##### New Features
+
+* **webpack:**
+  * Add source maps, add manual test html, update docs #34 ([40ecd525](https://github.com/korzio/djv/commit/40ecd525e6f45d8a07282e424272e52de5826d8a))
+  * Update webpack #34 ([73cfa621](https://github.com/korzio/djv/commit/73cfa621a8378fd61f5b74680e01522632f2d7fb))
+
+##### Bug Fixes
+
+* **utils:** Add type checking ([038d89a7](https://github.com/korzio/djv/commit/038d89a796ccbdac335fff6d143222da2a7db3ec))
+* **validators:** Add required type object check ([4970bc5e](https://github.com/korzio/djv/commit/4970bc5ed1cf438db2dfae644ac62de682e14fbd))
+* **items:** Add items is array check #29 ([d13cdcd2](https://github.com/korzio/djv/commit/d13cdcd27df4f59556dceb34a1ea5bfce5477475))
+* **test:** Add latest suite tests ([323c9a0d](https://github.com/korzio/djv/commit/323c9a0ddb87ca748e473cc6d790494831290519))
+
+##### Refactors
+
+* **state:**
+  * Handle circular self schema dependency ([7bbefcc5](https://github.com/korzio/djv/commit/7bbefcc56e9ef79468a937db91cb18a07fed1620))
+  * Add resolution schema search ([05307fcc](https://github.com/korzio/djv/commit/05307fcc0458adfb16af87ad6df20102c0658bb9))
+  * Add iterate through fragment even it is not a fragment ([068114c1](https://github.com/korzio/djv/commit/068114c19ca124cc63afca646c482345b34ced21))
+  * Clean descent utils method ([fd18b7d8](https://github.com/korzio/djv/commit/fd18b7d8f7ccda0cb1084d27674cd7b0939dd581))
+  * Move descent outside of the state ([3691b361](https://github.com/korzio/djv/commit/3691b36161dad7ab2a0945db324f660a0b3e0b7f))
+  * Change domain to path usage in  url resolution ([856f1a52](https://github.com/korzio/djv/commit/856f1a52fe9162da45ac277ab7dfb72a38c34949))
+  * Add full uri check for resolution purpose ([1bdf4e88](https://github.com/korzio/djv/commit/1bdf4e88f979c9885351dea5c7c3e61b1a510626))
+  * Add experimental strategy to resolve state ([fb9c5a96](https://github.com/korzio/djv/commit/fb9c5a9608e705c93a4ae910e618aaacd429a6ea))
+  * Change ascend method to solve parentSchema ([e366f3dc](https://github.com/korzio/djv/commit/e366f3dc8e29493cfd61038247fe4938adfbd813))
+  * Draft rename resolution scope ([99aaea1e](https://github.com/korzio/djv/commit/99aaea1e22fff1c1fd59b9f5a9c2b9f1e82b0772))
+  * Add join path utility ([8dc9cee2](https://github.com/korzio/djv/commit/8dc9cee2b6f7595b3e7d8559627fa35e2b36b301))
+
 #### 1.1.0 (2017-6-16)
 
 ##### New Features
