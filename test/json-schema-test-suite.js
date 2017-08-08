@@ -22,6 +22,7 @@ const factory = function djvTestSuiteAdapter() {
         this.errors = error ? [error] : null;
         return !error;
       } catch (error) {
+        console.error(error.stack);
         this.errors = [error.message];
         return false;
       }
