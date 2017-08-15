@@ -8,11 +8,11 @@ const refs = {
   'http://json-schema.org/draft-04/schema': require('./resources/draft-04-schema.json'),
 };
 
-const factory = function djvTestSuiteAdapter() {
+const factory = function djvTestSuiteAdapter(version) {
   return {
     validate(schema, instance) {
       try {
-        const env = djv();
+        const env = djv({ version });
         Object.keys(refs).forEach((uri) => {
           env.addSchema(uri, refs[uri]);
         });
@@ -31,7 +31,7 @@ const factory = function djvTestSuiteAdapter() {
 };
 
 function runTest(draft) {
-  jsonSchemaTest(factory(), {
+  jsonSchemaTest(factory(`draft-0${draft}`), {
     description: `Test suite draft-0${draft}`,
     suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${draft}/{**/,}*.json` },
     cwd: __dirname,
