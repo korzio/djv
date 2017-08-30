@@ -10,6 +10,8 @@
                 "objects": "only-multiline",
                 "functions": "only-multiline"
             }
-        ]
+        ],
+        "no-var": 2,
+        "prefer-const": 0
     }
 }

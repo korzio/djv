@@ -8,7 +8,6 @@ This guide contains the information about to contribute to djv library.
 * [Table of contents](#content)
 * [How to](#howto)
   * [Debug tests](#tests)
-  * [Debug json-schema-test-suite](#test-suite)
   * [Release](#release)
 
 ## How to <a name="howto"></a>
@@ -41,47 +40,18 @@ When some of the tests are failing use the following `vscode` configuration
   "args": [
     "JASMINE_CONFIG_PATH=package.json"
   ]
-},
+}
 ```
 
-Put a debugger on `node_modules/json-schema-test-suite/index.js:147`
+For json-schema-test suite put a debugger on `node_modules/json-schema-test/index.js:147`
 ```javascript
 testCase.result = validator.validate(testCase.data);
 // something like
-if(~testCase.description.indexOf('no additional items present')) {
+if(~test.description.indexOf('no additional items present')) {
   debugger;
 }
+return doTest(validators)
 ```
-
-### Debug json-schema-test-suite <a name="test-suite"></a>
-
-For windows remove the following lines from `testRunner.js`
-
-```js
-require('child_process').exec('rm -f ' + path.join(__dirname, '/reports/*.md'), function (err) {
-  if (err) {
-    console.error('Error removing old reports');
-    console.error(err);
-  }
-...
-});
-```
-
-Put a debugger on `node_modules\json-schema-benchmark\testRunner.js`
-
-:119 for generate
-
-:139 for validate
-
-```javascript
-givenResult = validator.test(validatorInstance, test.data, testSuite.schema);
-// something like
-if(~testSuite.description.indexOf('an array of schemas for items')) {
-  debugger;
-}
-```
-
-After run the `json-schema-benchmark` will generate report `djv.md` with failing tests.
 
 ### Release <a name="release"></a>
 
