@@ -1,6 +1,8 @@
 const jsonSchemaTest = require('json-schema-test');
 const djv = require('../');
 
+describe.skip = xdescribe;
+
 const refs = {
   'http://localhost:1234/name.json': require('json-schema-test-suite/remotes/name.json'),
   'http://localhost:1234/integer.json': require('json-schema-test-suite/remotes/integer.json'),
