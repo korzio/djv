@@ -14,7 +14,16 @@ describe('uri', () => {
       { name: '#/schema2', parts: ['http://x.y.z/rootschema.json#', 'otherschema.json'], res: 'http://x.y.z/otherschema.json#' },
       { name: '#/schema2/nested', parts: ['http://x.y.z/rootschema.json#', 'otherschema.json', '#bar'], res: 'http://x.y.z/otherschema.json#bar' },
       { name: '#/schema2/alsonested', parts: ['http://x.y.z/rootschema.json#', 't/inner.json#a'], res: 'http://x.y.z/t/inner.json#a' },
-      { name: '#/schema3', parts: ['http://x.y.z/rootschema.json#', 'some://where.else/completely#'], res: 'some://where.else/completely#' }
+      { name: '#/schema3', parts: ['http://x.y.z/rootschema.json#', 'some://where.else/completely#'], res: 'some://where.else/completely#' },
+      {
+        name: '#/custom1',
+        parts: [
+          'http://localhost:1234/object',
+          'name.json#/definitions/orNull',
+          'name.json#/definitions/orNull'
+        ],
+        res: 'http://localhost:1234/name.json#/definitions/orNull'
+      }
     ];
 
     tests.forEach((test) => {

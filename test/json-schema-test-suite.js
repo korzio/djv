@@ -38,7 +38,8 @@ function runTest(draft) {
     description: `Test suite draft-0${draft}`,
     suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${draft}/{**/,}*.json` },
     cwd: __dirname,
-    hideFolder: 'tests/'
+    hideFolder: 'tests/',
+    skip: ['optional/zeroTerminatedFloats']
   });
 }
 
