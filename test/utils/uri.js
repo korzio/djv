@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { makePath } = require('../../lib/utils');
+const { makePath } = require('../../lib/utils/uri');
 
 describe('uri', () => {
   describe('makePath()', () => {

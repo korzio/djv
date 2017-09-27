@@ -1,3 +1,78 @@
+#### 1.2.0 (2017-09-25)
+
+##### Documentation Changes
+
+* **npm:** Remove docs folder from npm files #51 ([d5d2a8de](https://github.com/korzio/djv/commit/d5d2a8decd75db3351734ba25175b98533ca2d75))
+* **readme:** Update v6 support #51 ([2ec9d7f0](https://github.com/korzio/djv/commit/2ec9d7f0abe53edb5b0e0c2d23b0747dd1cafbca))
+* **const:** Add const documentation #51 ([b7f0355d](https://github.com/korzio/djv/commit/b7f0355d61e048d88ee485007d006f47831de0c9))
+* **state:**
+  * Fix state documentation #51 ([7a000072](https://github.com/korzio/djv/commit/7a000072b038bf6ffa3a4d0c98252c739fecd7c3))
+  * Add resolution exampes #41 ([a89658c0](https://github.com/korzio/djv/commit/a89658c07dfb65848920425404e278b5c099eaa7))
+  * Add state description #41 ([ff1b7a75](https://github.com/korzio/djv/commit/ff1b7a75392e807098c29d0a719b99cdb1f596d6))
+* **todo:** Add todo for draft-06 #41 ([4fa64971](https://github.com/korzio/djv/commit/4fa64971c550fa558fda3031c93bd62ef061a7aa))
+* **contribute:** Change tests debug description ([b0d03069](https://github.com/korzio/djv/commit/b0d03069c24c462cee82c8c6b5c78baeb4cc4f41))
+* **contributing:**
+  * Fix version ([351a8eb8](https://github.com/korzio/djv/commit/351a8eb88648b2939ecc7e6a87c9c6ce1f762f1d))
+  * Fix typo ([66b62f3e](https://github.com/korzio/djv/commit/66b62f3eab75768403eae9682bb49ebf859f99eb))
+  * Add release branch MR description ([faf53856](https://github.com/korzio/djv/commit/faf538564894a47d386e621b7de8a21602020052))
+* **release:** Add table of contents, update release contributing #35 ([2f69a166](https://github.com/korzio/djv/commit/2f69a1660c3d882bc783e42dbd8ea45e7173d824))
+* Update api docs, format utils ([11cae181](https://github.com/korzio/djv/commit/11cae1815de6f786abc24a71616eb50e18b2beaf))
+
+##### New Features
+
+* **id:** Add $id, examples keywords #44 ([1ef4745f](https://github.com/korzio/djv/commit/1ef4745f1658857c6c132264b8319fdaa73ccbcc))
+* **format:** Add uri formats #44 ([79802269](https://github.com/korzio/djv/commit/79802269650e530228f2719497ddda165acfba81))
+* **validator:**
+  * Add json-pointer format #44 ([7a522f8a](https://github.com/korzio/djv/commit/7a522f8a9da29504190140329d12faf0aa29d4c5))
+  * Add propertyNames validator #44 ([5ad9d343](https://github.com/korzio/djv/commit/5ad9d343575558be0e6a69bd2420b958e1d4dc00))
+  * Add const validator #44 ([1d4fa106](https://github.com/korzio/djv/commit/1d4fa10656d4bb7caffd2fd9b598ecfccf1d71eb))
+  * Add contains validator #44 ([8ecf27d8](https://github.com/korzio/djv/commit/8ecf27d81621b7638e6199c75c1ab623f47561ec))
+* **validators:** Add useVersion method to change environment version; Add exlusive maximum/minimum properties #44 ([f57f9116](https://github.com/korzio/djv/commit/f57f9116204ad0f9f4126a81e6ead89bbce25f58))
+
+##### Bug Fixes
+
+* **test:**
+  * Add name json mock data to test environment #41 ([c1d0e13b](https://github.com/korzio/djv/commit/c1d0e13bb50ccab189e88b7f6d6e2568c47a3770))
+* **rename:** Rename template resolve to link as in state #41 ([34fc6e4d](https://github.com/korzio/djv/commit/34fc6e4d3f378a82378244a354817cd9ec4a6e3e))
+* **format:** Add regex, fix uri formatters #44 ([757397d7](https://github.com/korzio/djv/commit/757397d7fb1a698a92953596804cf37d28b325d1))
+* **draft-06:**
+  * Move validators to patch environment #44 ([9f7412bc](https://github.com/korzio/djv/commit/9f7412bc3ed8148d119b729cf30b6f8d4c7fbb82))
+  * Fix properties strict type check #44 ([f663f7ba](https://github.com/korzio/djv/commit/f663f7ba6285ed04575050ac9d27eb4509420c01))
+* **boolean:** Fix transform default schema ([69488621](https://github.com/korzio/djv/commit/694886218a5f1330d5c49671d88932b645185b95))
+* **tests:** Add isSchema, transformSchema utilities for boolean schema presentation #44 ([cb48a2a1](https://github.com/korzio/djv/commit/cb48a2a1da27a7a9c1c373a412b2c0624b8f8f7d))
+* **validator:** Add not array required check #44 ([83b01279](https://github.com/korzio/djv/commit/83b01279824698d783aedc8c39b0b434c404f22b))
+
+##### Other Changes
+
+* **state:** Fix skip describe for jasmine #41 ([52ffd0c7](https://github.com/korzio/djv/commit/52ffd0c7f500bf793dfd26df6b46a6551b7ef328))
+* **debug:** Add console output if error is thrown ([6b61a465](https://github.com/korzio/djv/commit/6b61a4657668fbee616acf1a7092cfc4a9c53a4c))
+* Add draft-06 tests; Switch to json schema test package #44 ([1a9ce7e7](https://github.com/korzio/djv/commit/1a9ce7e77b200fb475735997928edc378e9caf19))
+
+##### Refactors
+
+* **files:**
+  * Clean code; Remove deprecated #51 ([b815f6dc](https://github.com/korzio/djv/commit/b815f6dcafa1b40f13895b1ffb3d348dff4ed2b4))
+  * Clean code; Split utils to uri and schema; Move transforms to environment #51 ([7c497fb5](https://github.com/korzio/djv/commit/7c497fb50613680afec2b011a1a46012c0c7b247))
+* **performance:** Clean code; Change uri keys utils; Rewrite state resolution id algorithm to not use multiple functions calls #51 ([1fe9339d](https://github.com/korzio/djv/commit/1fe9339d4fefdcbaf75b54e3df53c9c1b5a08f06))
+* **state:**
+  * Clean code; Change cleanId to head #51 ([465749a4](https://github.com/korzio/djv/commit/465749a4c48bab74d34158b15abaacdd44ffdb17))
+  * Add draft-06 meta schema to tests; Add uriKeys variable to contain id/$id changes; Fix boolean schema descend resolution #41 ([01b37316](https://github.com/korzio/djv/commit/01b37316529752a1fe982f3028bf9065b5a5fbc1))
+  * Move descend to state; Fix intermediate ids resolution #41 ([ad70e8e7](https://github.com/korzio/djv/commit/ad70e8e775a6834034a1e17a6052eeb9c3b2b47b))
+  * Fix uri utils regexps #41 ([0df12100](https://github.com/korzio/djv/commit/0df121002385e679a9dfe339f7c2ce66a5e2d86c))
+  * Fix ignore other properties in $ref schemas; Clean schemas stack after visit #41 ([fe85a55b](https://github.com/korzio/djv/commit/fe85a55b49b8acb6a9013f452a6cb4554a03dd07))
+  * Add reference schema resolution; Add resolution by id #41 ([64d9ba5e](https://github.com/korzio/djv/commit/64d9ba5e1dacc4b61c2e561290564bbb372c6635))
+  * Simplify resolution; Rename descend utils  #41 ([c55f3af6](https://github.com/korzio/djv/commit/c55f3af6cc96e11909c28648164e105e450866c5))
+* **validators:**
+  * Change hasOwnProperty usage; Add checks for boolean schemas #44 ([af5fcc75](https://github.com/korzio/djv/commit/af5fcc755788215b9c6f26f09a3aee7ae72c760d))
+
+##### Code Style Changes
+
+* **state:** Normalize if-else utils clauses #41 ([b9b11e29](https://github.com/korzio/djv/commit/b9b11e2996607ffe566f33ecd5ab4409bec9f280))
+
+##### Tests
+
+* **properties:** Add check for object type #44 ([3fb8bcbb](https://github.com/korzio/djv/commit/3fb8bcbb56b8915bef2e492524eb1bc8387d75aa))
+
 #### 1.1.1 (2017-07-20)
 
 ##### Documentation Changes
