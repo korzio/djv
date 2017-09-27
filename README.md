@@ -14,6 +14,16 @@ This is a part of **djv** packages aimed to work with json-schema.
 
 Any contributions are welcome. Check [contribution guide](./CONTRIBUTING.md).
 
+**New!!!**
+
+Since version *1.2.0* `djv` package supports `draft-06`.
+The default version is still *draft-04* for the backward compatibility and due to the semantic versioning.
+For `draft-06` use a *version* option in [constructor](#constructor) arguments.
+
+```javascript
+const env = new djv({ version: 'draft-06' });
+```
+
 ## Table of contents <a name="content"></a>
 
 * [djv](#title)
@@ -21,6 +31,8 @@ Any contributions are welcome. Check [contribution guide](./CONTRIBUTING.md).
 * [Install](#install)
 * [Usage](#usage)
 * [API](#api)
+  * [Environment](#environment)
+  * [addSchema](#addSchema)
   * [addSchema](#addSchema)
   * [validate](#validate)
   * [removeSchema](#removeSchema)
@@ -52,8 +64,8 @@ There are 2 versions of validator
 ## Usage <a name="usage"></a>
 
 ```javascript
-var env = new djv();
-var jsonSchema = {
+const env = new djv();
+const jsonSchema = {
     "common": {
         "properties": {
             "type": {
@@ -76,6 +88,19 @@ env.validate('test#/common', { type: 'custom' });
 ```
 
 ## API <a name="api"></a>
+
+### Environment <a name="environment"></a>
+
+To instantiate `djv` environment
+
+```javascript
+const djv = require('djv');
+const env = djv({
+  version: 'draft-06', // use json-schema draft-06
+  formats: { /*...*/ }, // custom formats @see #addFormat
+  errorHandler: () => { /*...*/ }, // custom error handler, @see #setErrorHandler
+});
+```
 
 ### addSchema(name: string, schema: object?) -> resolved: object <a name="addSchema"></a>
 
