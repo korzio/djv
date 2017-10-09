@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "changelog": "generate-changelog",
+    "docs": "jsdoc",
     "lint": "eslint ./lib",
     "prepublishOnly": "npm run test && npm run build",
     "test": "npm run test:jasmine && npm run lint",
@@ -37,11 +38,15 @@
     "eslint-plugin-import": "^2.7.0",
     "generate-changelog": "^1.2.1",
     "jasmine": "^2.5.2",
+    "jsdoc": "^3.5.5",
     "json-schema-benchmark": "https://github.com/ebdrup/json-schema-benchmark.git",
     "json-schema-test": "^1.3.0",
     "json-schema-test-suite": "https://github.com/json-schema/JSON-Schema-Test-Suite.git",
     "source-map-loader": "^0.2.1",
     "webpack": "^3.0.0"
+  },
+  "optionalDependencies": {
+    "@korzio/djv-draft-04": "^2.0.0"
   },
   "spec_dir": "test",
   "spec_files": [
