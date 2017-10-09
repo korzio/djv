@@ -3,26 +3,18 @@
 
 # djv <a name="title"></a>
 
-Dynamic JSON Schema Validator
+Dynamic JSON-Schema Validator
 
-Current package supports **JSON Schema v6 and v4**. It contains utils to validate objects against schemas.
+Current package supports **JSON-Schema v6 and v4**. It contains utils to validate objects against schemas.
 This is a part of **djv** packages aimed to work with json-schema.
 
 - [djv](https://github.com/korzio/djv) validate object against schemas
 - [djvi](https://github.com/korzio/djvi) instantiate objects by schema definition
 - [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
+- [@djv/draft-04](https://github.com/korzio/@djv/draft-04) TODO
 
-Any contributions are welcome. Check [contribution guide](./CONTRIBUTING.md).
-
-**New!!!**
-
-Since version *1.2.0* `djv` package supports `draft-06`.
-The default version is still *draft-04* for the backward compatibility and due to the semantic versioning.
-For `draft-06` use a *version* option in [constructor](#constructor) arguments.
-
-```javascript
-const env = new djv({ version: 'draft-06' });
-```
+Any contributions are welcome. Check the [contribution guide](./CONTRIBUTING.md).
+Since version **1.2.0** *djv* package supports `draft-06`. Version **2.0.0** makes `draft-06` the default schema version. To use other versions check the [environment section](#environment).
 
 ## Table of contents <a name="content"></a>
 
@@ -33,7 +25,6 @@ const env = new djv({ version: 'draft-06' });
 * [API](#api)
   * [Environment](#environment)
   * [addSchema](#addSchema)
-  * [addSchema](#addSchema)
   * [validate](#validate)
   * [removeSchema](#removeSchema)
   * [resolve](#resolve)
@@ -41,6 +32,7 @@ const env = new djv({ version: 'draft-06' });
   * [import](#import)
   * [addFormat](#addFormat)
   * [setErrorHandler](#errorHandler)
+  * [useVersion](#useVersion)
 * [Tests](#tests)
 * [References](#references)
 
@@ -78,7 +70,7 @@ const jsonSchema = {
     }
 };
 
-// Use `addSchema` to add json schema
+// Use `addSchema` to add json-schema
 env.addSchema('test', jsonSchema);
 env.validate('test#/common', { type: 'common' });
 // => undefined
@@ -91,16 +83,23 @@ env.validate('test#/common', { type: 'custom' });
 
 ### Environment <a name="environment"></a>
 
-To instantiate `djv` environment
+To instantiate *djv* environment
 
 ```javascript
 const djv = require('djv');
 const env = djv({
-  version: 'draft-06', // use json-schema draft-06
+  version: 'draft-04', // use json-schema draft-06
   formats: { /*...*/ }, // custom formats @see #addFormat
   errorHandler: () => { /*...*/ }, // custom error handler, @see #setErrorHandler
 });
 ```
+
+To use a previous version of JSON-Schema draft, use a [`draft-04` plugin](https://www.npmjs.com/package/@korzio/djv-draft-04), specified in [*optionalDependencies*](https://docs.npmjs.com/files/package.json#optionaldependencies) of *djv* package.
+
+```javascript
+const env = new djv({ version: 'draft-04' });
+```
+
 
 ### addSchema(name: string, schema: object?) -> resolved: object <a name="addSchema"></a>
 
@@ -208,6 +207,30 @@ djv({
 When a custom error handler is used, the template body function adds a `error` variable inside a generated validator, which can be used to put error information. `errorType` is always passed to error handler function. Some validate utilities put extra argument, like f.e. currently processed property value. Inside the handler context is a templater instance, which contains `this.schema`, `this.data` paths arrays to identify validator position.
 @see test/index/setErrorHandler for more examples
 
+### useVersion(version: string, configure: function) <a name="useVersion"></a>
+
+To customize environment provide a `configure` function which will update configuration for *djv* instance.
+
+```javascript
+env.useVersion('draft-04')
+// or
+env.useVersion('custom', configure)
+```
+
+`Configure` will get internal properties as an argument. Check the [@korzio/djv-draft-04 code](https://github.com/korzio/-djv-draft-04/blob/master/index.js).
+
+```javascript
+exposed = {
+  properties,
+  keywords,
+  validators,
+  formats,
+  keys,
+  transformation,
+}
+```
+
+**!Important** Modifing them will affect all *djv* instances in an application.
 
 ## Tests <a name="tests"></a>
 
@@ -218,69 +241,4 @@ npm test
 ## References <a name="references"></a>
 
 * [JSON-Schema Specification](http://json-schema.org/)
-* [JSON Schema Benchmark](https://github.com/ebdrup/json-schema-benchmark)
-
-<!---
-
-## What relative tasks can be? Why use json-schema?
-
-### Meta programming
-
-What is [generate-function](https://www.npmjs.com/package/generate-function)? How to write well-optimized functions?
-
-- Templates
-- Validators
-
-### Goals
-
-- keep structure and code clean
-
-in is-my-json-schema-valid and jjv packages structure is - one file
-
-- add architecture ability to set instantiate and randomize data
-- fast validation
-- normal speed generation
-
-### Refactoring jjv
-
-- splitted into files
-- updated variable names
-
-### Refactoring for generated function
-
-investigate c++ inline functions
-
-- is-my-json-valid implementation
-- got a generated-function
-- updated generated function with few methods - resolve, error, etc, cache - Maybe it is better to use some meta language for it?
-
-### Optimized things
-
-- Added Measured
-- Describe All measurements
-
-### Google Closure Advanced
-
-- features
-- what is used
-- why still need optimizations
-
-## TODO
-
-### Todo Optimizations List
-
-- generatedNonReffunctions 1377, generatedfunctionsUsed 3003 - make fn.if function, and transport scope/context/state to generate function
-- update ref usage for non-ref inline functions - if a linke does not contain refs inside (can be easily checked by json.stringify), it should be a regular if-else consequence as well - Optimize small schemas (like in allOf example - don't generate function, althought return context)
-- [if optimization](http://jsperf.com/ifs-vs-expression)?
-- [killing optimization](http://habrahabr.ru/company/mailru/blog/273839/)
-
-### General
-
-- [asmjs compile step](http://ejohn.org/blog/asmjs-javascript-compile-target/)
-- [compile with google closure or smth](https://www.npmjs.com/package/google-closure-compiler)
-- $data
-- add posibility to customize validators
-- add nested tests
-- add tests to [resolve](http://tools.ietf.org/html/draft-zyp-json-schema-04#section-7.2.4)
-
--->
+* [JSON-Schema Benchmark](https://github.com/ebdrup/json-schema-benchmark)
