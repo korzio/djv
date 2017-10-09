@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/properties.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/properties.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module properties
+ * @description
+ * Validators as string for properties keyword rules.
+ * A validator is a function, which when executed returns
+ * - `false` if test is failed,
+ * - `true` otherwise.
+ */
+module.exports = {
+  readOnly: 'false',
+  exclusiveMinimum(schema) {
+    return `%s &lt;= ${schema.exclusiveMinimum}`;
+  },
+  minimum(schema) {
+    return `%s &lt; ${schema.minimum}`;
+  },
+  exclusiveMaximum(schema) {
+    return `%s >= ${schema.exclusiveMaximum}`;
+  },
+  maximum(schema) {
+    return `%s > ${schema.maximum}`;
+  },
+  multipleOf: '($1/$2) % 1 !== 0 &amp;&amp; typeof $1 === "number"',
+  // When the instance value is a string
+  // this provides a regular expression that a string instance MUST match in order to be valid.
+  pattern(schema) {
+    let pattern;
+    let modifiers;
+
+    if (typeof schema.pattern === 'string') { pattern = schema.pattern; } else {
+      pattern = schema.pattern[0];
+      modifiers = schema.pattern[1];
+    }
+
+    const regex = new RegExp(pattern, modifiers);
+    return `typeof ($1) === "string" &amp;&amp; !${regex}.test($1)`;
+  },
+  /**
+  * Creates an array containing the numeric code points of each Unicode
+  * character in the string. While JavaScript uses UCS-2 internally,
+  * this function will convert a pair of surrogate halves (each of which
+  * UCS-2 exposes as separate characters) into a single code point,
+  * matching UTF-16.
+  * @see `punycode.ucs2.encode`
+  * @see &lt;https://mathiasbynens.be/notes/javascript-encoding>
+  * @memberOf punycode.ucs2
+  * @name decode
+  * @param {String} string The Unicode input string (UCS-2).
+  * @returns {Array} The new array of code points.
+  */
+  minLength: 'typeof $1 === "string" &amp;&amp; function dltml(b,c){for(var a=0,d=b.length;a&lt;d&amp;&amp;c;){var e=b.charCodeAt(a++);55296&lt;=e&amp;&amp;56319>=e&amp;&amp;a&lt;d&amp;&amp;56320!==(b.charCodeAt(a++)&amp;64512)&amp;&amp;a--;c--}return!!c}($1, $2)',
+  maxLength: 'typeof $1 === "string" &amp;&amp; function dmtml(b,c){for(var a=0,d=b.length;a&lt;d&amp;&amp;0&lt;=c;){var e=b.charCodeAt(a++);55296&lt;=e&amp;&amp;56319>=e&amp;&amp;a&lt;d&amp;&amp;56320!==(b.charCodeAt(a++)&amp;64512)&amp;&amp;a--;c--}return 0>c}($1, $2)',
+  // This attribute defines the minimum number of values
+  // in an array when the array is the instance value.
+  minItems: '$1.length &lt; $2 &amp;&amp; Array.isArray($1)',
+  // This attribute defines the maximum number of values
+  // in an array when the array is the instance value.
+  maxItems: '$1.length > $2 &amp;&amp; Array.isArray($1)',
+  // TODO without some
+  uniqueItems(schema, fn) {
+    if (!schema.uniqueItems) {
+      return 'true';
+    }
+
+    fn(fn.cache('{}'));
+    return `Array.isArray($1) &amp;&amp; $1.some(function(item, key) {
+        if(item !== null &amp;&amp; typeof item === "object") key = JSON.stringify(item);
+        else key = item;
+        if(${fn.cache('{}')}.hasOwnProperty(key)) return true;
+        ${fn.cache('{}')}[key] = true;
+    })`;
+  },
+  // ***** object validation ****
+  minProperties: '!Array.isArray($1) &amp;&amp; typeof $1 === "object" &amp;&amp; Object.keys($1).length &lt; $2',
+  // An object instance is valid against "maxProperties"
+  // if its number of properties is less than, or equal to, the value of this keyword.
+  maxProperties: '!Array.isArray($1) &amp;&amp; typeof $1 === "object" &amp;&amp; Object.keys($1).length > $2',
+  // ****** all *****
+  enum(schema, fn) {
+    return schema.enum.map((value) => {
+      let $1 = '$1';
+      let comparedValue = value;
+
+      if (typeof value === 'object') {
+        comparedValue = `'${JSON.stringify(value)}'`;
+        $1 = fn.cache('JSON.stringify($1)');
+      } else if (typeof value === 'string') {
+        comparedValue = `'${value}'`;
+      }
+
+      return `${$1} !== ${comparedValue}`;
+    }).join(' &amp;&amp; ');
+  }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-environment.html">environment</a></li><li><a href="module-formats.html">formats</a></li><li><a href="module-keywords.html">keywords</a></li><li><a href="module-properties.html">properties</a></li><li><a href="module-schema.html">schema</a></li><li><a href="module-state.html">state</a></li><li><a href="module-template.html">template</a></li><li><a href="module-utils.html">utils</a></li><li><a href="module-validators.html">validators</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFormat">addFormat</a></li><li><a href="global.html#Environment">Environment</a></li><li><a href="global.html#setErrorHandler">setErrorHandler</a></li><li><a href="global.html#useVersion">useVersion</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 09 2017 18:03:34 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
