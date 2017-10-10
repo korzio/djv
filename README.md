@@ -11,7 +11,7 @@ This is a part of **djv** packages aimed to work with json-schema.
 - [djv](https://github.com/korzio/djv) validate object against schemas
 - [djvi](https://github.com/korzio/djvi) instantiate objects by schema definition
 - [jvu](https://github.com/korzio/jvu) utilities for declarative, FP usage
-- [@djv/draft-04](https://github.com/korzio/@djv/draft-04) TODO
+- [@djv/draft-04](https://github.com/korzio/@djv/draft-04) environment updates to support *draft-04*
 
 Any contributions are welcome. Check the [contribution guide](./CONTRIBUTING.md).
 Since version **1.2.0** *djv* package supports `draft-06`. Version **2.0.0** makes `draft-06` the default schema version. To use other versions check the [environment section](#environment).
