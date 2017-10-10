@@ -5,6 +5,8 @@
 
 Dynamic JSON-Schema Validator
 
+[Official Documentation](http://korzio.github.io/djv/)
+
 Current package supports **JSON-Schema v6 and v4**. It contains utils to validate objects against schemas.
 This is a part of **djv** packages aimed to work with json-schema.
 
