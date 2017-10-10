@@ -4,6 +4,9 @@ module.exports = {
   devtool: 'source-map',
   entry: ['./lib/djv.js'],
   target: 'node',
+  externals: {
+    '@korzio/djv-draft-04': '@korzio/djv-draft-04'
+  },
   output: {
     library: 'djv',
     libraryTarget: 'umd',
