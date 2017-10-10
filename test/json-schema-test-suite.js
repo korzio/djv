@@ -34,15 +34,15 @@ const factory = function djvTestSuiteAdapter(version) {
   };
 };
 
-function runTest(draft) {
-  jsonSchemaTest(factory(`draft-0${draft}`), {
-    description: `Test suite draft-0${draft}`,
-    suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${draft}/{**/,}*.json` },
+function runTest(version) {
+  jsonSchemaTest(factory(`draft-0${version}`), {
+    description: `Test suite draft-0${version}`,
+    suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${version}/{**/,}*.json` },
     cwd: __dirname,
     hideFolder: 'tests/',
     skip: ['optional/zeroTerminatedFloats']
   });
 }
 
-runTest(4);
 runTest(6);
+runTest(4);

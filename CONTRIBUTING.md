@@ -83,7 +83,7 @@ npm publish
 - [ ] Check speed metrics
 - [ ] Update package.json version to $VERSION and commit
 ```sh
-git commit -m "release: Update package version to $VERSION #ISSUE"
+git commit -m "release: Update package version to $VERSION #$ISSUE"
 ```
 - [ ] Create a changelog
 ```sh
