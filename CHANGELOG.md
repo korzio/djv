@@ -1,3 +1,15 @@
+#### 2.0.0 (2017-10-10)
+
+##### New Features
+
+* **env** [BREAKING CHANGE] Make schema v6 default #48 ([bd1d4cae](https://github.com/korzio/djv/commit/bd1d4cae9d275c188536d37d721236745c4a1dc2))
+
+##### Documentation Changes
+
+* **api** Add auto-generated docs #48 ([440ff67d](https://github.com/korzio/djv/commit/440ff67d84aad429ab5a334aed384f59c5a96aa7))
+* **site** Add index documentation page #48 ([cb4db59b](https://github.com/korzio/djv/commit/cb4db59b1db66f5107a834b236ad461e04e3e6cb))
+* **env** Add environment section to describe options ([5e0e1a91](https://github.com/korzio/djv/commit/5e0e1a91e1eead2942032545e220e44f24c87dfd))
+
 #### 1.2.0 (2017-09-25)
 
 ##### Documentation Changes

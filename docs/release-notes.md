@@ -9,7 +9,7 @@ Announcements are also sent to [the gitter channel](https://gitter.im/korzio/djv
 
 * [Release Notes](#title)
 * [Table of contents](#content)
-* [2.0.0](#2.0.0)
+* [2.0.0](#2.0.0) - 2017-10-10
 * [1.2.0](#1.2.0) - 2017-09-27
 * [1.2.0](#1.1.1) - 2017-07-20
 * [1.0.0](#1.0.0) - 2017-06-17
