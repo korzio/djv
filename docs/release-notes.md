@@ -3,7 +3,7 @@
 This document contains all notes about the past djv releases.
 Announcements are also sent to [the gitter channel](https://gitter.im/korzio/djv).
 
-[![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)]
+![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)
 
 ## Table of contents <a name="content"></a>
 
