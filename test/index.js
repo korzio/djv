@@ -1,7 +1,7 @@
 const assert = require('assert');
 const djv = require('../');
 
-const refSchema = require('json-schema-test-suite/tests/draft4/allOf.json')[0].schema;
+const refSchema = require('json-schema-benchmark/JSON-Schema-Test-Suite/tests/draft4/allOf.json')[0].schema;
 
 describe('djv', () => {
   it('should exist', () => {
