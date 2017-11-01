@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/korzio/djv.svg?branch=master)](https://travis-ci.org/korzio/djv)
-[![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)](https://gitter.im/korzio/djv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/korzio/djv](https://badges.gitter.im/korzio/djv.svg)](https://gitter.im/korzio/djv)
 
 # djv <a name="title"></a>
 
@@ -60,16 +60,16 @@ There are 2 versions of validator
 ```javascript
 const env = new djv();
 const jsonSchema = {
-    "common": {
-        "properties": {
-            "type": {
-                "enum": ["common"]
-            }
-        },
-        "required": [
-            "type"
-        ]
-    }
+  "common": {
+    "properties": {
+      "type": {
+        "enum": ["common"]
+      }
+    },
+    "required": [
+      "type"
+    ]
+  }
 };
 
 // Use `addSchema` to add json-schema
@@ -102,7 +102,6 @@ To use a previous version of JSON-Schema draft, use a [`draft-04` plugin](https:
 const env = new djv({ version: 'draft-04' });
 ```
 
-
 ### addSchema(name: string, schema: object?) -> resolved: object <a name="addSchema"></a>
 
 Add a schema to a current djv environment,
@@ -110,9 +109,9 @@ Add a schema to a current djv environment,
 ```javascript
 env.addSchema('test', jsonSchema);
 /* => {
-    fn: function f0(data){...}
-    name: 'test'
-    schema: ...
+  fn: function f0(data){...}
+  name: 'test'
+  schema: ...
 } */
 ```
 
