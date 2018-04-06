@@ -161,7 +161,7 @@ describe('djv', () => {
     it('should add custom formatter as expression', () => {
       const env = djv();
 
-      env.addFormat('UpperCase', '%s !== %s.toUpperCase()');
+      env.addFormat('UpperCase', djv.expression`${'data'} !== ${'data'}.toUpperCase()`);
       env.addSchema('test', {
         format: 'UpperCase',
         type: 'string'
@@ -174,7 +174,7 @@ describe('djv', () => {
     it('should add custom formatter as function', () => {
       const env = djv();
 
-      env.addFormat('isOk', schema => `!${schema.isOk}`);
+      env.addFormat('isOk', ({ schema }) => `!${schema.isOk}`);
       env.addSchema('ok', {
         format: 'isOk',
         type: 'string',
@@ -192,7 +192,7 @@ describe('djv', () => {
     it('should be configurable with formats option passed as argument to environment constructor', () => {
       const env = djv({
         formats: {
-          isOk: schema => `!${schema.isOk}`
+          isOk: ({ schema }) => `!${schema.isOk}`
         }
       });
 
