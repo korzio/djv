@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
+  "files": ["lib/djv.js", "djv.js"],
   "scripts": {
     "build": "webpack",
     "changelog": "generate-changelog",
