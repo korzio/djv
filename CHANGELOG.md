@@ -1,3 +1,13 @@
+#### 2.1.0 (2018-06-24)
+
+##### New Features
+
+* **error code** [BREAKING CHANGE] Change default error handlers to output error objects instead of strings ([#54](https://github.com/korzio/djv/commit/014a38285ede3e26455bb07c02d1613541892897))
+
+##### Other Changes
+
+* Update package version to 2.1.0 [#65](https://github.com/korzio/djv/pull/65) ([6fd3445f](https://github.com/korzio/djv/commit/6fd3445f3a7374d186a2519f068826a76e0887ea))
+
 #### 2.0.0 (2017-10-10)
 
 ##### New Features
