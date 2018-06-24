@@ -55,7 +55,7 @@ describe('djv', () => {
 
       const customObj = { type: 'custom' };
       const errors = env.validate('test#/common', customObj);
-      assert.equal(typeof errors, 'string');
+      assert.equal(typeof errors, 'object');
     });
 
     it('should validate an object by a given schema without namespace', () => {
@@ -63,7 +63,7 @@ describe('djv', () => {
 
       const customObj = { type: 'custom' };
       let errors = env.validate(jsonSchema.common, customObj);
-      assert.equal(typeof errors, 'string');
+      assert.equal(typeof errors, 'object');
 
       const commonObj = { type: 'common' };
       errors = env.validate(jsonSchema.common, commonObj);
@@ -116,7 +116,7 @@ describe('djv', () => {
 
       const customObj = { type: 'custom' };
       errors = env.validate('test#/common', customObj);
-      assert.equal(typeof errors, 'string');
+      assert.equal(typeof errors, 'object');
     });
 
     it('should restore environment with references', () => {
@@ -132,7 +132,7 @@ describe('djv', () => {
       assert.equal(errors, undefined);
 
       errors = env.validate('test', { foo: 'baz' });
-      assert.equal(typeof errors, 'string');
+      assert.equal(typeof errors, 'object');
     });
 
     it('should restore partial environment', () => {
@@ -153,7 +153,7 @@ describe('djv', () => {
 
       const customObj = { type: 'custom' };
       errors = env.validate('test#/common', customObj);
-      assert.equal(typeof errors, 'string');
+      assert.equal(typeof errors, 'object');
     });
   });
 
@@ -161,20 +161,20 @@ describe('djv', () => {
     it('should add custom formatter as expression', () => {
       const env = djv();
 
-      env.addFormat('UpperCase', '%s !== %s.toUpperCase()');
+      env.addFormat('UpperCase', djv.expression`${'data'} !== ${'data'}.toUpperCase()`);
       env.addSchema('test', {
         format: 'UpperCase',
         type: 'string'
       });
 
       assert.equal(env.validate('test', 'VALID'), undefined);
-      assert.equal(typeof env.validate('test', 'invalid'), 'string');
+      assert.equal(typeof env.validate('test', 'invalid'), 'object');
     });
 
     it('should add custom formatter as function', () => {
       const env = djv();
 
-      env.addFormat('isOk', schema => `!${schema.isOk}`);
+      env.addFormat('isOk', ({ schema }) => `!${schema.isOk}`);
       env.addSchema('ok', {
         format: 'isOk',
         type: 'string',
@@ -186,13 +186,13 @@ describe('djv', () => {
       });
 
       assert.equal(env.validate('ok', 'valid'), undefined);
-      assert.equal(typeof env.validate('notok', 'invalid'), 'string');
+      assert.equal(typeof env.validate('notok', 'invalid'), 'object');
     });
 
     it('should be configurable with formats option passed as argument to environment constructor', () => {
       const env = djv({
         formats: {
-          isOk: schema => `!${schema.isOk}`
+          isOk: ({ schema }) => `!${schema.isOk}`
         }
       });
 
@@ -207,7 +207,7 @@ describe('djv', () => {
       });
 
       assert.equal(env.validate('ok', 'valid'), undefined);
-      assert.equal(typeof env.validate('notok', 'invalid'), 'string');
+      assert.equal(typeof env.validate('notok', 'invalid'), 'object');
     });
   });
 
@@ -271,7 +271,7 @@ describe('djv', () => {
     it('should be configurable with setErrorHandler method', () => {
       const env = djv();
       env.addSchema('invalid', { format: 'uppercase' });
-      assert.equal(typeof env.validate('invalid', 'invalid'), 'string');
+      assert.equal(typeof env.validate('invalid', 'invalid'), 'object');
       env.removeSchema('invalid');
       env.setErrorHandler(() => 'return null;');
       env.addSchema('invalid', { format: 'uppercase' });
