@@ -47,7 +47,7 @@
     "webpack": "^3.0.0"
   },
   "optionalDependencies": {
-    "@korzio/djv-draft-04": "https://github.com/laurentgoudet/-djv-draft-04.git#bffbd7d"
+    "@korzio/djv-draft-04": "https://github.com/laurentgoudet/-djv-draft-04.git#af4b6a5"
   },
   "spec_dir": "test",
   "spec_files": [
