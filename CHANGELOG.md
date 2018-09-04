@@ -1,3 +1,11 @@
+#### 2.1.1 (2018-09-04)
+
+##### Other Changes
+
+*  Update package version to 2.1.1 [#69](https://github.com/korzio/djv/pull/69) ([44190e9d](https://github.com/korzio/djv/commit/44190e9d9fab723942d93cc34a36c22e85c0b11d))
+
+[Add `browser` field](https://docs.npmjs.com/files/package.json#browser)
+
 #### 2.1.0 (2018-06-24)
 
 ##### New Features

@@ -68,6 +68,7 @@ git checkout -b release/$VERSION
 ```
 - [ ] Update package.json version to $VERSIONALPHA and commit
 ```sh
+git add .
 git commit -m "release: Update package version to $VERSIONALPHA #$ISSUE"
 ```
 - [ ] Tag with the alpha version
@@ -83,6 +84,7 @@ npm publish
 - [ ] Check speed metrics
 - [ ] Update package.json version to $VERSION and commit
 ```sh
+git add .
 git commit -m "release: Update package version to $VERSION #$ISSUE"
 ```
 - [ ] Create a changelog
