@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
+  "browser": "djv.js",
   "scripts": {
     "build": "webpack",
     "changelog": "generate-changelog",
@@ -46,7 +47,7 @@
     "webpack": "^3.0.0"
   },
   "optionalDependencies": {
-    "@korzio/djv-draft-04": "^2.0.0"
+    "@korzio/djv-draft-04": "^2.0.1"
   },
   "spec_dir": "test",
   "spec_files": [
