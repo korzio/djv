@@ -53,7 +53,7 @@ or
 There are 2 versions of validator
 
 - `./lib/djv.js` a default one, not uglified and not transpiled
-- `./djv.js` a built one with a webpack, babel and uglify (preferrable for frontend)
+- `./djv.js` a built one with a webpack, babel and uglify (preferable for frontend)
 
 ## Usage <a name="usage"></a>
 
@@ -185,7 +185,7 @@ env.validate('ok', 'valid') // => undefined if schema contains isOk property
 ### setErrorHandler(errorHandler: function) <a name="errorHandler"></a>
 
 Specify custom error handler which will be used in generated functions when problem found.
-The function should return a string expression, which will be executed when generated validator function is executed. The simpliest use case is the default one @see `template/defaultErrorHandler`
+The function should return a string expression, which will be executed when generated validator function is executed. The simplist use case is the default one @see `template/defaultErrorHandler`
 ```javascript
  function defaultErrorHandler(errorType) {
    return `return "${errorType}: ${tpl.data}";`;
@@ -231,7 +231,7 @@ exposed = {
 }
 ```
 
-**!Important** Modifing them will affect all *djv* instances in an application.
+**!Important** Modifying them will affect all *djv* instances in an application.
 
 ## Tests <a name="tests"></a>
 
