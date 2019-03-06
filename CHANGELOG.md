@@ -1,3 +1,10 @@
+#### 2.1.2 (2019-03-06)
+
+##### Other Changes
+
+*  Update package version to 2.1.2 [#76](https://github.com/korzio/djv/pull/76) ([9b40c9d5](https://github.com/korzio/djv/commit/9b40c9d5ae50ce0d1324b5b25d3d9f8b8169882e))
+*  Fix required validator throwing on null values [#75](https://github.com/korzio/djv/pull/76)
+
 #### 2.1.1 (2018-09-04)
 
 ##### Other Changes
