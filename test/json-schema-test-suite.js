@@ -37,7 +37,8 @@ const factory = function djvTestSuiteAdapter(version) {
 function runTest(version) {
   jsonSchemaTest(factory(`draft-0${version}`), {
     description: `Test suite draft-0${version}`,
-    suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${version}/{**/,}*.json` },
+    // suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${version}/{**/,}*.json` },
+    suites: { tests: `../tmp/JSON-Schema-Test-Suite/tests/draft${version}/{**/,}*.json` },
     cwd: __dirname,
     hideFolder: 'tests/',
     skip: ['optional/zeroTerminatedFloats']
