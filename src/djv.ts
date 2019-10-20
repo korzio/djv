@@ -33,22 +33,19 @@ import { add, use } from './utils/environment.js';
  * const env = new djv({ errorHandler: () => ';' });
  * ```
  */
-function Environment(options = {}) {
-  if (!(this instanceof Environment)) { return new Environment(options); }
+class Environment {
+  static expression = expression
 
-  this.options = options;
-  this.resolved = {};
-  this.state = new State(null, this);
+  state: State
 
-  this.useVersion(options.version, options.versionConfigure);
-  this.addFormat(options.formats);
-}
-
-Object.assign(Environment, {
-  expression,
-});
-
-Object.assign(Environment.prototype, {
+  constructur(this: Environment, options = {}) {
+    this.options = options;
+    this.resolved = {};
+    this.state = new State(null, this);
+  
+    this.useVersion(options.version, options.versionConfigure);
+    this.addFormat(options.formats);
+  }
   /**
    * check if object correspond to schema
    *
@@ -65,10 +62,9 @@ Object.assign(Environment.prototype, {
    * @param {object} object
    * @returns {string} error - undefined if it is valid
    */
-  validate(name, object) {
+  validate(name: string, object: object) {
     return this.resolve(name).fn(object);
-  },
-
+  }
   /**
    * add schema to djv environment
    *
@@ -83,7 +79,7 @@ Object.assign(Environment.prototype, {
    * @param {object} schema
    * @returns {resolved}
    */
-  addSchema(name, schema) {
+  addSchema(name: string, schema: object) {
     const realSchema = typeof name === 'object' ? name : schema;
     const resolved = {
       schema: realSchema,
@@ -97,8 +93,7 @@ Object.assign(Environment.prototype, {
       });
 
     return resolved;
-  },
-
+  }
   /**
    * removes a schema or the whole structure from djv environment
    *
@@ -110,14 +105,13 @@ Object.assign(Environment.prototype, {
    *
    * @param {string} name
    */
-  removeSchema(name) {
+  removeSchema(name: string) {
     if (name) {
       delete this.resolved[name];
     } else {
       this.resolved = {};
     }
-  },
-
+  }
   /**
    * resolves name by existing environment
    *
@@ -131,7 +125,7 @@ Object.assign(Environment.prototype, {
    * @param {string} name
    * @returns {resolved}
    */
-  resolve(name) {
+  resolve(name: string) {
     if (typeof name === 'object' || !this.resolved[name]) {
       return this.addSchema(
         name,
@@ -140,8 +134,7 @@ Object.assign(Environment.prototype, {
     }
 
     return this.resolved[name];
-  },
-
+  }
   /**
    * exports the whole structure object from environment or by resolved name
    *
@@ -155,7 +148,7 @@ Object.assign(Environment.prototype, {
    * @param {string} name
    * @returns {serializedInternalState}
    */
-  export(name) {
+  export(name: string) {
     let resolved;
     if (name) {
       resolved = this.resolve(name);
@@ -176,8 +169,7 @@ Object.assign(Environment.prototype, {
     }
 
     return JSON.stringify(resolved);
-  },
-
+  }
   /**
    * imports all found structure objects to internal environment structure
    * Usage
@@ -188,7 +180,7 @@ Object.assign(Environment.prototype, {
    *
    * @param {object} config - internal structure or only resolved schema object
    */
-  import(config) {
+  import(config: string) {
     const item = JSON.parse(config);
     let restoreData = item;
     if (item.name && item.fn && item.schema) {
@@ -200,8 +192,7 @@ Object.assign(Environment.prototype, {
       const fn = restore(source, schema, this.options);
       this.resolved[name] = { name, schema, fn };
     });
-  },
-
+  }
   /**
    * @name addFormat
    * @type function
@@ -226,7 +217,7 @@ Object.assign(Environment.prototype, {
    * @param {string/object?} name
    * @param {string/function} formatter
    */
-  addFormat(name, formatter) {
+  addFormat(name: string, formatter: Function) {
     if (typeof name === 'string') {
       formats[name] = formatter;
       return;
@@ -235,8 +226,7 @@ Object.assign(Environment.prototype, {
     if (typeof name === 'object') {
       Object.assign(formats, name);
     }
-  },
-
+  }
   /**
    * @name setErrorHandler
    * @type function
@@ -273,9 +263,9 @@ Object.assign(Environment.prototype, {
    * @param {function} errorHandler - a function called each time compiler creates an error branch
    * @returns void
    */
-  setErrorHandler(errorHandler) {
+  setErrorHandler(errorHandler: Function) {
     Object.assign(this.options, { errorHandler });
-  },
+  }  
   /**
   * @name useVersion
   * @type {function}
@@ -287,7 +277,7 @@ Object.assign(Environment.prototype, {
   * @param {function} configure
   * @returns void
   */
-  useVersion(version, configure) {
+  useVersion(version: string, configure: Function) {
     if (typeof configure !== 'function' && version === 'draft-04') {
       /* eslint-disable no-param-reassign, global-require, import/no-extraneous-dependencies */
       configure = require('@korzio/djv-draft-04');
@@ -297,7 +287,7 @@ Object.assign(Environment.prototype, {
       add(version, configure);
     }
     use(version);
-  },
-});
+  }
+}
 
-export Environment;
+export default Environment;
