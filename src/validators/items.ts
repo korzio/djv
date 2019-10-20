@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function items(schema, tpl) {
+export function items(schema, tpl) {
   if (!hasProperty(schema, 'items')) {
     return;
   }

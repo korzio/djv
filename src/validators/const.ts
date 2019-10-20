@@ -1,7 +1,7 @@
-const { hasProperty } = require('../utils');
-const { make: makeSchema } = require('../utils/schema');
+import { hasProperty } from '../utils';
+import { make as makeSchema } from '../utils/schema';
 
-module.exports = function constant(schema, tpl) {
+export function constant(schema, tpl) {
   if (!hasProperty(schema, 'const')) {
     return;
   }

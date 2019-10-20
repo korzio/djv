@@ -1,8 +1,8 @@
-const { hasProperty } = require('../utils');
-const { is: isSchema } = require('../utils/schema');
+import { hasProperty } from '../utils';
+import { is as isSchema } from '../utils/schema';
 
 // @see http://json-schema.org/latest/json-schema-validation.html#rfc.section.6.5.7
-module.exports = function dependencies(schema, tpl) {
+export function dependencies(schema, tpl) {
   if (!hasProperty(schema, 'dependencies')) {
     return;
   }

@@ -1,7 +1,7 @@
-const { restore, expression } = require('./utils/template');
-const formats = require('./utils/formats');
-const { generate, State } = require('./utils/state');
-const { add, use } = require('./utils/environment.js');
+import { restore, expression } from './utils/template';
+import formats from './utils/formats';
+import { generate, State } from './utils/state';
+import { add, use } from './utils/environment.js';
 
 /**
  * Configuration for template
@@ -300,4 +300,4 @@ Object.assign(Environment.prototype, {
   },
 });
 
-module.exports = Environment;
+export Environment;

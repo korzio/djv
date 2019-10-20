@@ -1,8 +1,8 @@
-const properties = require('../utils/properties');
-const keywords = require('../utils/keywords');
-const { asExpression } = require('../utils');
+import properties from '../utils/properties';
+import keywords from '../utils/keywords';
+import { asExpression } from '../utils';
 
-module.exports = function property(schema, tpl) {
+export function property(schema, tpl) {
   Object.keys(schema)
     .forEach((key) => {
       if (keywords.indexOf(key) !== -1 || key === 'format') {

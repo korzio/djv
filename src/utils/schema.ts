@@ -83,7 +83,7 @@ function make(instance) {
   };
 }
 
-module.exports = {
+export {
   is,
   make,
   transform,

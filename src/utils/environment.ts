@@ -3,12 +3,13 @@
  * @description
  * Update the given environment
  */
-const properties = require('./properties');
-const keywords = require('./keywords');
-const validators = require('../validators');
-const formats = require('./formats');
-const { keys } = require('./uri');
-const { transformation } = require('./schema');
+import properties from './properties';
+
+import keywords from './keywords';
+import validators from '../validators';
+import formats from './formats';
+import { keys } from './uri';
+import { transformation } from './schema';
 
 const environmentConfig = {};
 
@@ -32,7 +33,7 @@ function use(version) {
   });
 }
 
-module.exports = {
+export {
   add,
   use,
 };

@@ -6,7 +6,7 @@
  * - `false` if test is failed,
  * - `true` otherwise.
  */
-module.exports = {
+export {
   readOnly: 'false',
   exclusiveMinimum(schema) {
     return `%s <= ${schema.exclusiveMinimum}`;

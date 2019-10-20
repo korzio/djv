@@ -1,6 +1,6 @@
-const formats = require('../utils/formats');
+import formats from '../utils/formats';
 
-module.exports = function format(schema, tpl) {
+export function format(schema, tpl) {
   if (typeof schema.format === 'undefined') {
     return;
   }

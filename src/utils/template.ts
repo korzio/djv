@@ -291,9 +291,9 @@ function templateExpression(strings, ...keys) {
   };
 }
 
-module.exports = {
+export {
   body,
   restore,
   template,
-  expression: templateExpression,
+  templateExpression as expression,
 };

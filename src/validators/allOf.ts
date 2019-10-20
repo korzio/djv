@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function allOf(schema, tpl) {
+export function allOf(schema, tpl) {
   if (!hasProperty(schema, 'allOf')) {
     return;
   }

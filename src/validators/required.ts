@@ -1,4 +1,4 @@
-module.exports = function required(schema, tpl) {
+export function required(schema, tpl) {
   if (!Array.isArray(schema.required)) {
     return;
   }

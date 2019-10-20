@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function patternProperties(schema, tpl) {
+export function patternProperties(schema, tpl) {
   const hasAdditionalProperties = hasProperty(schema, 'additionalProperties') && schema.additionalProperties !== true;
   const hasPatternProperties = hasProperty(schema, 'patternProperties');
 

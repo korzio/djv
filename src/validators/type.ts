@@ -1,7 +1,7 @@
-const types = require('../utils/types');
-const { hasProperty } = require('../utils');
+import types from '../utils/types';
+import { hasProperty } from '../utils';
 
-module.exports = function type(schema, tpl) {
+export function type(schema, tpl) {
   if (!hasProperty(schema, 'type')) {
     return;
   }

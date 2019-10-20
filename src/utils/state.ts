@@ -5,21 +5,12 @@
  * It also exports a main `generate` function.
  */
 
-const { list: validators } = require('../validators');
-const { body, restore, template } = require('./template');
-const { hasProperty } = require('./');
-const {
-  normalize,
-  makePath,
-  head,
-  isFullUri,
-  fragment,
-  keys,
-} = require('./uri');
-const {
-  is: isSchema,
-  transform: transformSchema,
-} = require('./schema');
+import { list as validators } from '../validators';
+
+import { body, restore, template } from './template';
+import { hasProperty } from './';
+import { normalize, makePath, head, isFullUri, fragment, keys } from './uri';
+import { is as isSchema, transform as transformSchema } from './schema';
 
 function State(schema = {}, env) {
   Object.assign(this, {
@@ -265,7 +256,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
   },
 });
 
-module.exports = {
+export {
   State,
   generate,
 };

@@ -1,4 +1,4 @@
-module.exports = {
+export {
   null: '%s !== null',
   string: 'typeof %s !== "string"',
   boolean: 'typeof %s !== "boolean"',
