@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/korzio/djv#readme",
   "devDependencies": {
+    "@types/node": "^12.11.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.2",
