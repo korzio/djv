@@ -1,3 +1,6 @@
+import { Schema } from './schema';
+import { Templater } from './template';
+
 /**
  * @module properties
  * @description
@@ -6,7 +9,14 @@
  * - `false` if test is failed,
  * - `true` otherwise.
  */
-export {
+
+type PropertyValidator = (schema: Schema, tpl: Templater) => string
+
+interface PropertyValidators {
+  [property: string]: PropertyValidator | string
+}
+
+const propertyValidators: PropertyValidators = {
   readOnly: 'false',
   exclusiveMinimum(schema) {
     return `%s <= ${schema.exclusiveMinimum}`;
@@ -92,3 +102,5 @@ export {
     }).join(' && ');
   }
 };
+
+export default propertyValidators;

@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function oneOf(schema, tpl) {
+export default function oneOf(schema, tpl) {
   if (!hasProperty(schema, 'oneOf')) {
     return;
   }

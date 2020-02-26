@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function properties(schema, tpl) {
+export default function properties(schema, tpl) {
   if (!hasProperty(schema, 'properties') || typeof schema.properties !== 'object') {
     return;
   }

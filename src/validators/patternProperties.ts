@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function patternProperties(schema, tpl) {
+export default function patternProperties(schema, tpl) {
   const hasAdditionalProperties = hasProperty(schema, 'additionalProperties') && schema.additionalProperties !== true;
   const hasPatternProperties = hasProperty(schema, 'patternProperties');
 

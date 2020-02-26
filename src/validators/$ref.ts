@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function $ref(schema, tpl) {
+export default function $ref(schema, tpl) {
   if (!hasProperty(schema, '$ref')) {
     return false;
   }

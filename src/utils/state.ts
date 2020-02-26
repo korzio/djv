@@ -4,15 +4,13 @@
  * State module is responsible for scope schemas resolution.
  * It also exports a main `generate` function.
  */
-
-import { list as validators } from '../validators';
-
 import { body, restore, template } from './template';
 import { hasProperty } from './';
 import { normalize, makePath, head, isFullUri, fragment, keys } from './uri';
-import { is as isSchema, transform as transformSchema } from './schema';
+import { is as isSchema, transform as transformSchema, Schema } from './schema';
+import { Validators } from '../validators';
 
-function State(schema = {}, env) {
+function State(schema: Schema = {}, env) {
   Object.assign(this, {
     context: [],
     entries: new Map(),
@@ -248,7 +246,8 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     const initialLength = this.length;
     this.push(schema);
 
-    validators.some(validator => (
+    Validators.list.some(validator => (
+      /// <reference path="Validation.ts" />
       validator(schema, tpl)
     ));
 

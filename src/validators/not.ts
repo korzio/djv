@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function not(schema, tpl) {
+export default function not(schema, tpl) {
   if (!hasProperty(schema, 'not')) {
     return;
   }

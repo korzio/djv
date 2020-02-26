@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function contains(schema, tpl) {
+export default function contains(schema, tpl) {
   if (!hasProperty(schema, 'contains')) {
     return;
   }

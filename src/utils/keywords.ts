@@ -3,7 +3,7 @@
  * @description
  * A list of keywords used in specification.
  */
-export [
+export default [
   '$ref',
   '$schema',
   'type',

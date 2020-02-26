@@ -1,6 +1,6 @@
 import formats from '../utils/formats';
 
-export function format(schema, tpl) {
+export default function format(schema, tpl) {
   if (typeof schema.format === 'undefined') {
     return;
   }

@@ -2,7 +2,7 @@ import { hasProperty } from '../utils';
 import { is as isSchema } from '../utils/schema';
 
 // @see http://json-schema.org/latest/json-schema-validation.html#rfc.section.6.5.7
-export function dependencies(schema, tpl) {
+export default function dependencies(schema, tpl) {
   if (!hasProperty(schema, 'dependencies')) {
     return;
   }

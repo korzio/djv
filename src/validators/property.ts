@@ -2,7 +2,7 @@ import properties from '../utils/properties';
 import keywords from '../utils/keywords';
 import { asExpression } from '../utils';
 
-export function property(schema, tpl) {
+export default function property(schema, tpl) {
   Object.keys(schema)
     .forEach((key) => {
       if (keywords.indexOf(key) !== -1 || key === 'format') {

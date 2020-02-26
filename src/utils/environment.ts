@@ -6,7 +6,7 @@
 import properties from './properties';
 
 import keywords from './keywords';
-import validators from '../validators';
+import { Validators } from '../validators';
 import formats from './formats';
 import { keys } from './uri';
 import { transformation } from './schema';
@@ -26,7 +26,10 @@ function use(version) {
   patchEnvironment({
     properties,
     keywords,
-    validators,
+    validators: {
+      name: Validators.name,
+      list: Validators.list,
+    },
     formats,
     keys,
     transformation,

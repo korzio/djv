@@ -4,6 +4,8 @@
  * Low-level utilities to check, create and transform schemas
  */
 
+export type Schema = object | boolean;
+
 /**
  * @name transformation
  * @type {object}
@@ -24,7 +26,7 @@ const transformation = {
  * @param {object} schema
  * @returns {boolean} isSchema
  */
-function is(schema) {
+function is(schema: Schema) {
   return (
     typeof schema === 'object' ||
     typeof schema === 'boolean'
@@ -40,7 +42,7 @@ function is(schema) {
  * @param {object} schema
  * @returns {object} schema
  */
-function transform(schema) {
+function transform(schema: Schema) {
   if (schema === true) {
     return transformation.ANY_SCHEMA;
   } else if (schema === false) {
@@ -57,7 +59,7 @@ function transform(schema) {
  * @param {any} instance
  * @returns {object} schema
  */
-function make(instance) {
+function make(instance): Schema {
   if (typeof instance !== 'object' || instance === null) {
     return { enum: [instance] };
   }

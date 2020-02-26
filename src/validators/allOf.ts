@@ -1,6 +1,6 @@
 import { hasProperty } from '../utils';
 
-export function allOf(schema, tpl) {
+export default function allOf(schema, tpl) {
   if (!hasProperty(schema, 'allOf')) {
     return;
   }

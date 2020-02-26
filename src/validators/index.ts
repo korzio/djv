@@ -6,8 +6,8 @@
  * Each validator may return true, which means, others will be ignored
  * @see $ref
  */
-import required from './required';
 
+import required from './required';
 import format from './format';
 import property from './property';
 import type from './type';
@@ -23,9 +23,16 @@ import items from './items';
 import contains from '../validators/contains';
 import constant from '../validators/const';
 import propertyNames from '../validators/propertyNames';
+import { Templater } from '../utils/template';
+import { Schema } from '../utils/schema';
 
-export {
-  name: {
+export namespace Validators {
+
+  export interface Validator {
+    (schema: Schema, tpl: Templater): void;
+  }
+
+  export const name = {
     $ref,
     required,
     format,
@@ -42,8 +49,9 @@ export {
     contains,
     constant,
     propertyNames,
-  },
-  list: [
+  };
+
+  export const list = [
     $ref,
     required,
     format,
@@ -60,5 +68,6 @@ export {
     contains,
     constant,
     propertyNames
-  ]
-};
+  ];
+  
+}

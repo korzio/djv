@@ -1,4 +1,4 @@
-export {
+export default {
   null: '%s !== null',
   string: 'typeof %s !== "string"',
   boolean: 'typeof %s !== "boolean"',
