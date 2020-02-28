@@ -39,7 +39,7 @@ function hasProperty(object, property) {
   );
 }
 
-module.exports = {
+export {
   asExpression,
   hasProperty,
 };

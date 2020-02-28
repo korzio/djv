@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function $ref(schema, tpl) {
+export default function $ref(schema, tpl) {
   if (!hasProperty(schema, '$ref')) {
     return false;
   }

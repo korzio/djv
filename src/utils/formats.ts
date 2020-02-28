@@ -5,9 +5,9 @@
  * A validator is a string, which when executed returns `false` if test is failed, `true` otherwise.
  */
 
-const { expression } = require('./template');
+import { expression } from './template';
 
-module.exports = {
+export default {
   alpha: expression`!/^[a-zA-Z]+$/.test(${'data'})`,
   alphanumeric: expression`!/^[a-zA-Z0-9]+$/.test(${'data'})`,
   identifier: expression`!/^[-_a-zA-Z0-9]+$/.test(${'data'})`,

@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function not(schema, tpl) {
+export default function not(schema, tpl) {
   if (!hasProperty(schema, 'not')) {
     return;
   }

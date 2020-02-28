@@ -123,7 +123,7 @@ function normalize(uri) {
   return decodeURIComponent(uri.replace(/~1/g, '/').replace(/~0/g, '~'));
 }
 
-module.exports = {
+export {
   makePath,
   isFullUri,
   head,

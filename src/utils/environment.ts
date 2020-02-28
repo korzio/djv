@@ -3,12 +3,13 @@
  * @description
  * Update the given environment
  */
-const properties = require('./properties');
-const keywords = require('./keywords');
-const validators = require('../validators');
-const formats = require('./formats');
-const { keys } = require('./uri');
-const { transformation } = require('./schema');
+import properties from './properties';
+
+import keywords from './keywords';
+import { Validators } from '../validators';
+import formats from './formats';
+import { keys } from './uri';
+import { transformation } from './schema';
 
 const environmentConfig = {};
 
@@ -25,14 +26,17 @@ function use(version) {
   patchEnvironment({
     properties,
     keywords,
-    validators,
+    validators: {
+      name: Validators.name,
+      list: Validators.list,
+    },
     formats,
     keys,
     transformation,
   });
 }
 
-module.exports = {
+export {
   add,
   use,
 };

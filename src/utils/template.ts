@@ -14,8 +14,18 @@
  * @param {DjvConfig} options
  * @return {function} tpl
  */
+
+export type TemplaterData = Array<string>
+
+export interface Templater {
+  (expression: string, ...args: any[]): Templater;
+  cachedIndex: number;
+  data: TemplaterData;
+  error(errorType: string, data: TemplaterData): string
+}
+
 function template(state, options) {
-  function tpl(expression, ...args) {
+  const tpl: Templater = (expression, ...args) => {
     let last;
 
     tpl.lines.push(
@@ -34,7 +44,7 @@ function template(state, options) {
     return tpl;
   }
 
-  function clearDecode(tplString) {
+  function clearDecode(tplString: string) {
     return tplString
       .replace('[', '')
       .replace(']', '')
@@ -79,7 +89,7 @@ function template(state, options) {
     },
     data: ['data'],
     error,
-    lines: [],
+    lines: Array<string>(),
     schema: ['schema'],
     push: tpl,
     /**
@@ -291,9 +301,9 @@ function templateExpression(strings, ...keys) {
   };
 }
 
-module.exports = {
+export {
   body,
   restore,
   template,
-  expression: templateExpression,
+  templateExpression as expression,
 };

@@ -1,4 +1,6 @@
-module.exports = function required(schema, tpl) {
+import { Templater } from '../utils/template';
+
+export default function required (schema, tpl: Templater) {
   if (!Array.isArray(schema.required)) {
     return;
   }

@@ -4,24 +4,13 @@
  * State module is responsible for scope schemas resolution.
  * It also exports a main `generate` function.
  */
+import { body, restore, template } from './template';
+import { hasProperty } from './';
+import { normalize, makePath, head, isFullUri, fragment, keys } from './uri';
+import { is as isSchema, transform as transformSchema, Schema } from './schema';
+import { Validators } from '../validators';
 
-const { list: validators } = require('../validators');
-const { body, restore, template } = require('./template');
-const { hasProperty } = require('./');
-const {
-  normalize,
-  makePath,
-  head,
-  isFullUri,
-  fragment,
-  keys,
-} = require('./uri');
-const {
-  is: isSchema,
-  transform: transformSchema,
-} = require('./schema');
-
-function State(schema = {}, env) {
+function State(schema: Schema = {}, env) {
   Object.assign(this, {
     context: [],
     entries: new Map(),
@@ -257,7 +246,8 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     const initialLength = this.length;
     this.push(schema);
 
-    validators.some(validator => (
+    Validators.list.some(validator => (
+      /// <reference path="Validation.ts" />
       validator(schema, tpl)
     ));
 
@@ -265,7 +255,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
   },
 });
 
-module.exports = {
+export {
   State,
   generate,
 };

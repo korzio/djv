@@ -1,6 +1,6 @@
-const { hasProperty } = require('../utils');
+import { hasProperty } from '../utils';
 
-module.exports = function properties(schema, tpl) {
+export default function properties(schema, tpl) {
   if (!hasProperty(schema, 'properties') || typeof schema.properties !== 'object') {
     return;
   }

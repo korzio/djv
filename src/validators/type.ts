@@ -1,7 +1,8 @@
-const types = require('../utils/types');
-const { hasProperty } = require('../utils');
+import types from '../utils/types';
+import { hasProperty } from '../utils';
+import { Validators } from '.';
 
-module.exports = function type(schema, tpl) {
+const type: Validators.Validator = (schema, tpl) => {
   if (!hasProperty(schema, 'type')) {
     return;
   }
@@ -10,4 +11,6 @@ module.exports = function type(schema, tpl) {
   const condition = `(${[].concat(schema.type).map(key => types[key]).join(') && (')})`;
 
   tpl(`if (${condition}) ${error}`, tpl.data);
-};
+}
+
+export default type;
