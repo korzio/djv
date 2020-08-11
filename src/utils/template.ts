@@ -4,6 +4,9 @@
  * Defines a small templater functionality for creating functions body.
  */
 
+import {State} from "./state";
+import {IOptions} from "../djv";
+
 /**
  * @name template
  * @type function
@@ -21,24 +24,25 @@ export interface Templater {
   (expression: string, ...args: any[]): Templater;
   cachedIndex: number;
   data: TemplaterData;
-  error(errorType: string, data: TemplaterData): string
+  error(errorType: string, data: TemplaterData): string;
+  lines: string[]
 }
 
-function template(state, options) {
-  const tpl: Templater = (expression, ...args) => {
-    let last;
+function template(state: State, options: IOptions): Templater {
+  const tpl: Templater = (expression: string, ...args: any[]) => {
+    let last: string;
 
     tpl.lines.push(
-      expression
-        .replace(/%i/g, () => 'i')
-        .replace(/\$(\d)/g, (match, index) => `${args[index - 1]}`)
-        .replace(/(%[sd])/g, () => {
-          if (args.length) {
-            last = args.shift();
-          }
+        expression
+            .replace(/%i/g, () => 'i')
+            .replace(/\$(\d)/g, (match, index) => `${args[index - 1]}`)
+            .replace(/(%[sd])/g, () => {
+              if (args.length) {
+                last = args.shift();
+              }
 
-          return `${last}`;
-        })
+              return `${last}`;
+            })
     );
 
     return tpl;
@@ -46,33 +50,33 @@ function template(state, options) {
 
   function clearDecode(tplString: string) {
     return tplString
-      .replace('[', '')
-      .replace(']', '')
-      .replace('(', '')
-      .replace(')', '')
-      .replace('decodeURIComponent', '');
+        .replace('[', '')
+        .replace(']', '')
+        .replace('(', '')
+        .replace(')', '')
+        .replace('decodeURIComponent', '');
   }
 
   const error = typeof options.errorHandler === 'function' ?
-    options.errorHandler :
-    function defaultErrorHandler(errorType) {
-      const path = this.data.toString()
-        .replace(/^data/, '');
-      const dataPath = path
-        .replace(/\['([^']+)'\]/ig, '.$1')
-        .replace(/\[(i[0-9]*)\]/ig, '[\'+$1+\']');
-      const schemaPath = `#${
-        path
-          .replace(/\[i([0-9]*)\]/ig, '/items')
-          .replace(/\['([^']+)'\]/ig, '/properties/$1')
+      options.errorHandler :
+      function defaultErrorHandler(errorType) {
+        const path = this.data.toString()
+            .replace(/^data/, '');
+        const dataPath = path
+            .replace(/\['([^']+)'\]/ig, '.$1')
+            .replace(/\[(i[0-9]*)\]/ig, '[\'+$1+\']');
+        const schemaPath = `#${
+            path
+                .replace(/\[i([0-9]*)\]/ig, '/items')
+                .replace(/\['([^']+)'\]/ig, '/properties/$1')
         }/${errorType}`;
 
-      return `return {
+        return `return {
         keyword: '${errorType}',
         dataPath: decodeURIComponent("${clearDecode(dataPath)}"),
         schemaPath: decodeURIComponent("${clearDecode(schemaPath)}")
       };`;
-    };
+      };
 
   Object.assign(tpl, {
     cachedIndex: 0,
@@ -180,10 +184,10 @@ function makeVariables({ defineErrors, index }) {
    */
   const errors = defineErrors ? 'const errors = [];' : '';
   const variables = index ?
-    `let i${Array(...Array(index))
-      .map((value, i) => i + 1)
-      .join(',i')};` :
-    '';
+      `let i${Array(...Array(index))
+          .map((value, i) => i + 1)
+          .join(',i')};` :
+      '';
 
   // @see map array with holes trick
   // http://2ality.com/2013/11/initializing-arrays.html
@@ -213,13 +217,13 @@ function makeHelpers({ context, inner }) {
   const references = [];
 
   context
-    .forEach((value, i) => {
-      if (typeof value === 'number') {
-        references.push(`${i + 1} = f${value + 1}`);
-        return;
-      }
-      functions.push(`${i + 1} = ${value}`);
-    });
+      .forEach((value, i) => {
+        if (typeof value === 'number') {
+          references.push(`${i + 1} = f${value + 1}`);
+          return;
+        }
+        functions.push(`${i + 1} = ${value}`);
+      });
 
   return `const f${functions.concat(references).join(', f')};`;
 }

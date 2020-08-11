@@ -9,37 +9,18 @@ import { hasProperty } from './';
 import { normalize, makePath, head, isFullUri, fragment, keys } from './uri';
 import { is as isSchema, transform as transformSchema, Schema } from './schema';
 import { Validators } from '../validators';
+import Environment, {IOptions, ISchema} from "../djv";
 
-function State(schema: Schema = {}, env) {
-  Object.assign(this, {
-    context: [],
-    entries: new Map(),
-    env,
-  });
-}
 
-/**
- * @name generate
- * @type {function}
- * @description
- * The main schema process function.
- * Available and used both in external and internal generation.
- * Saves the state for internal recursive calls.
- * @param {object} env - djv environment
- * @param {object} schema - to process
- * @param {State} state - saved state
- * @param {Environment} options
- * @returns {function} restoredFunction
- */
-function generate(env, schema, state = new State(schema, env), options) {
-  const tpl = template(state, options);
-  tpl.visit(schema);
-
-  const source = body(tpl, state, options);
-  return restore(source, schema, options);
-}
-
-State.prototype = Object.assign(Object.create(Array.prototype), {
+class State {
+  context: any[];
+  entries: Map<any, any>
+  env: any;
+  constructor(schema: Schema | null = {}, env: Environment) {
+    this.context = [];
+    this.entries = new Map();
+    this.env = env;
+  }
   /**
    * @name addEntry
    * @type {function}
@@ -69,7 +50,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     }
 
     return this.context.push(entry);
-  },
+  }
   /**
    * @name revealReference
    * @type {function}
@@ -81,13 +62,13 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
    */
   revealReference(schema) {
     for (
-      let doubled = this.context.indexOf(schema);
-      doubled !== -1;
-      doubled = this.context.indexOf(schema)
+        let doubled = this.context.indexOf(schema);
+        doubled !== -1;
+        doubled = this.context.indexOf(schema)
     ) {
       this.context[doubled] = this.context.length;
     }
-  },
+  }
   /**
    * @name link
    * @type {function}
@@ -100,7 +81,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     const schema = this.resolve(url);
     const entry = this.addEntry(url, schema);
     return entry;
-  },
+  }
   /**
    * @name resolveReference
    * @type {function}
@@ -140,7 +121,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     // attach reference and make path
     const path = makePath([lastFullURIReference, ...partialReferences, reference]);
     return path;
-  },
+  }
   /**
    * @name ascend
    * @private
@@ -157,18 +138,18 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
 
     // Search while it is a full schema, not a ref
     while (
-      parentSchema.$ref &&
-      // avoid infinite loop
-      head(parentSchema.$ref) !== head(reference) &&
-      // > All other properties in a "$ref" object MUST be ignored.
-      // @see https://tools.ietf.org/html/draft-wright-json-schema-01#section-8
-      Object.keys(parentSchema).length === 1
-    ) {
+        parentSchema.$ref &&
+        // avoid infinite loop
+        head(parentSchema.$ref) !== head(reference) &&
+        // > All other properties in a "$ref" object MUST be ignored.
+        // @see https://tools.ietf.org/html/draft-wright-json-schema-01#section-8
+        Object.keys(parentSchema).length === 1
+        ) {
       parentSchema = this.ascend(parentSchema.$ref);
     }
 
     return parentSchema;
-  },
+  }
   /**
    * @name descend
    * @private
@@ -191,27 +172,27 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
 
     const parts = uriFragment.split('/');
     const currentSchema = parts
-      .map(normalize)
-      .reduce((schema, part, index) => {
-        let subSchema = schema[part];
-        if (!isSchema(subSchema)) {
-          subSchema = schema.definitions && schema.definitions[part];
-        }
+        .map(normalize)
+        .reduce((schema, part, index) => {
+          let subSchema = schema[part];
+          if (!isSchema(subSchema)) {
+            subSchema = schema.definitions && schema.definitions[part];
+          }
 
-        if (
-          // last will be pushed on visit
-          // @see /draft4/refRemote.json:http://localhost:1234/scope_change_defs2.json
-          index !== parts.length - 1 &&
-          hasProperty(subSchema, keys.id)
-        ) {
-          this.push(subSchema);
-        }
+          if (
+              // last will be pushed on visit
+              // @see /draft4/refRemote.json:http://localhost:1234/scope_change_defs2.json
+              index !== parts.length - 1 &&
+              hasProperty(subSchema, keys.id)
+          ) {
+            this.push(subSchema);
+          }
 
-        return subSchema;
-      }, parentSchema);
+          return subSchema;
+        }, parentSchema);
 
     return isSchema(currentSchema) ? currentSchema : parentSchema;
-  },
+  }
   /**
    * @name resolve
    * @type {function}
@@ -230,7 +211,7 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     const subSchema = this.descend(reference, parentSchema);
 
     return subSchema;
-  },
+  }
   /**
    * @name visit
    * @type {function}
@@ -247,13 +228,34 @@ State.prototype = Object.assign(Object.create(Array.prototype), {
     this.push(schema);
 
     Validators.list.some(validator => (
-      /// <reference path="Validation.ts" />
-      validator(schema, tpl)
+        /// <reference path="Validation.ts" />
+        validator(schema, tpl)
     ));
 
     this.length = initialLength;
-  },
-});
+  }
+}
+
+/**
+ * @name generate
+ * @type {function}
+ * @description
+ * The main schema process function.
+ * Available and used both in external and internal generation.
+ * Saves the state for internal recursive calls.
+ * @param {object} env - djv environment
+ * @param {object} schema - to process
+ * @param {State} state - saved state
+ * @param {Environment} options
+ * @returns {function} restoredFunction
+ */
+function generate(env: Environment, schema: ISchema, state: State = new State(schema, env), options: IOptions) {
+  const tpl = template(state, options);
+  tpl.visit(schema);
+
+  const source = body(tpl, state, options);
+  return restore(source, schema, options);
+}
 
 export {
   State,

@@ -33,18 +33,55 @@ import { add, use } from './utils/environment.js';
  * const env = new djv({ errorHandler: () => ';' });
  * ```
  */
+
+export interface IOptions {
+  version: string;
+  versionConfigure?: Function;
+  formats?: IFormats;
+  inner: boolean;
+  errorHandler?: Function;
+}
+
+interface IFormats {
+  [key: string]: Function;
+}
+
+export interface ISchema {
+  id: string
+}
+
+interface IResolve {
+  name: string;
+  schema: any;
+  fn: any;
+}
+
 class Environment {
   static expression = expression
 
   state: State
+  options: IOptions;
+  private defaultOptions: IOptions = {
+    version: 'draft-06',
+    inner: false,
+  }
+  resolved: {
+    [key: string]: IResolve
+  };
 
-  constructur(this: Environment, options = {}) {
-    this.options = options;
+  constructor(options: Partial<IOptions> = {}) {
+    const enrichedOptions: IOptions = {
+      ...this.defaultOptions,
+      ...options
+    }
+    const {version, versionConfigure} = enrichedOptions;
+    this.options = enrichedOptions;
     this.resolved = {};
     this.state = new State(null, this);
-  
-    this.useVersion(options.version, options.versionConfigure);
-    this.addFormat(options.formats);
+
+    this.useVersion(version, versionConfigure);
+    formats.setFormatters(enrichedOptions.formats || {})
+
   }
   /**
    * check if object correspond to schema
@@ -76,10 +113,9 @@ class Environment {
    *
    * @param {string?} name
    * @param {object} schema
-   * @param {object} schema
    * @returns {resolved}
    */
-  addSchema(name: string, schema: object) {
+  addSchema(name: string, schema: ISchema): IResolve {
     const realSchema = typeof name === 'object' ? name : schema;
     const resolved = {
       schema: realSchema,
@@ -87,10 +123,10 @@ class Environment {
     };
 
     [name, schema.id]
-      .filter(id => typeof id === 'string')
-      .forEach((id) => {
-        this.resolved[id] = Object.assign({ name: id }, resolved);
-      });
+        // .filter(id => typeof id === 'string')
+        .forEach((id) => {
+          this.resolved[id] = Object.assign({ name: id }, resolved);
+        });
 
     return resolved;
   }
@@ -125,11 +161,11 @@ class Environment {
    * @param {string} name
    * @returns {resolved}
    */
-  resolve(name: string) {
+  resolve(name: string): IResolve {
     if (typeof name === 'object' || !this.resolved[name]) {
       return this.addSchema(
-        name,
-        this.state.resolve(name)
+          name,
+          this.state.resolve(name)
       );
     }
 
@@ -217,16 +253,23 @@ class Environment {
    * @param {string/object?} name
    * @param {string/function} formatter
    */
-  addFormat(name: string, formatter: Function) {
-    if (typeof name === 'string') {
-      formats[name] = formatter;
-      return;
-    }
 
-    if (typeof name === 'object') {
-      Object.assign(formats, name);
-    }
-  }
+
+  //
+  // addFormat(name: string | IFormats, formatter?: Function) {
+  //   if (typeof name === 'string' && formatter) {
+  //     formats.setFormatter(name, formatter)
+  //     return;
+  //   }
+  //
+  //   if (typeof name === 'object') {
+  //     formats.setFormatters()
+  //     Object.assign<IFormats, IFormats>(formats, name);
+  //   }
+  // }
+
+
+
   /**
    * @name setErrorHandler
    * @type function
@@ -265,19 +308,19 @@ class Environment {
    */
   setErrorHandler(errorHandler: Function) {
     Object.assign(this.options, { errorHandler });
-  }  
+  }
   /**
-  * @name useVersion
-  * @type {function}
-  * @description
-  * Add a specification version for environment
-  * A configure function is called with exposed environments, like keys, formats, etc.
-  * Updates internals utilities and configurations to fix versions implementation conflicts
-  * @param {string} version of json-schema specification to use
-  * @param {function} configure
-  * @returns void
-  */
-  useVersion(version: string, configure: Function) {
+   * @name useVersion
+   * @type {function}
+   * @description
+   * Add a specification version for environment
+   * A configure function is called with exposed environments, like keys, formats, etc.
+   * Updates internals utilities and configurations to fix versions implementation conflicts
+   * @param {string} version of json-schema specification to use
+   * @param {function} configure
+   * @returns void
+   */
+  useVersion(version: string, configure?: Function) {
     if (typeof configure !== 'function' && version === 'draft-04') {
       /* eslint-disable no-param-reassign, global-require, import/no-extraneous-dependencies */
       configure = require('@korzio/djv-draft-04');
