@@ -3,7 +3,7 @@ const djv = require('../../');
 const formats = require('../../lib/utils/formats');
 
 describe('Issue-95: Format validators ignore non-strings', () => {
-  ['date-time', 'date', 'time'].forEach((format) => {
+  Object.keys(formats).forEach((format) => {
     it(format + ' should ignore non-strings', () => {
       const env = djv();
       env.addSchema('format', {
