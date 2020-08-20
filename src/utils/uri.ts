@@ -28,7 +28,7 @@ const keys = {
  * @param {string} id
  * @returns {string} cleaned
  */
-function head(uri) {
+function head(uri?: string) {
   if (typeof uri !== 'string') {
     return uri;
   }
@@ -37,7 +37,7 @@ function head(uri) {
   return parts[0];
 }
 
-function isFullUri(uri) {
+function isFullUri(uri: string) {
   return REGEXP_URI.test(uri);
 }
 
@@ -52,7 +52,7 @@ function isFullUri(uri) {
  * @param {string} uri
  * @returns {string} path
  */
-function path(uri) {
+function path(uri: string) {
   return uri.replace(REGEXP_URI_PATH, '$1');
 }
 
@@ -63,7 +63,7 @@ function path(uri) {
  * @param {string} uri
  * @returns {string} fragment
  */
-function fragment(uri) {
+function fragment(uri?: string) {
   if (typeof uri !== 'string') {
     return uri;
   }
@@ -81,7 +81,7 @@ function fragment(uri) {
  * @param {array<string>} parts
  * @returns {string} uri
  */
-function makePath(parts) {
+function makePath(parts: string[]) {
   return parts
     .filter(part => typeof part === 'string')
     .reduce((uri, id) => {
@@ -119,7 +119,7 @@ function makePath(parts) {
  * @param {string} uri
  * @returns {string} normalizedUri
  */
-function normalize(uri) {
+function normalize(uri: string) {
   return decodeURIComponent(uri.replace(/~1/g, '/').replace(/~0/g, '~'));
 }
 

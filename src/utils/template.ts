@@ -5,7 +5,7 @@
  */
 
 import {State} from "./state";
-import {IOptions} from "../djv";
+import {IOptions, ISchema} from "../djv";
 
 /**
  * @name template
@@ -23,9 +23,14 @@ export type TemplaterData = Array<string>
 export interface Templater {
   (expression: string, ...args: any[]): Templater;
   cachedIndex: number;
+  cached: any[],
+  schema: ISchema;
+  cache: (v: string) => string;
   data: TemplaterData;
   error(errorType: string, data: TemplaterData): string;
-  lines: string[]
+  lines: string[];
+  link: (l:string) => string;
+  visit: (schema: any) => void;
 }
 
 function template(state: State, options: IOptions): Templater {
@@ -59,7 +64,7 @@ function template(state: State, options: IOptions): Templater {
 
   const error = typeof options.errorHandler === 'function' ?
       options.errorHandler :
-      function defaultErrorHandler(errorType) {
+      function defaultErrorHandler(errorType: string) {
         const path = this.data.toString()
             .replace(/^data/, '');
         const dataPath = path
@@ -81,7 +86,7 @@ function template(state: State, options: IOptions): Templater {
   Object.assign(tpl, {
     cachedIndex: 0,
     cached: [],
-    cache(expression) {
+    cache(expression: string) {
       const layer = tpl.cached[tpl.cached.length - 1];
       if (layer[expression]) {
         return `i${layer[expression]}`;
@@ -105,7 +110,7 @@ function template(state: State, options: IOptions): Templater {
      * @param {string} url
      * @return {string} functionName
      */
-    link(url) {
+    link(url: string) {
       return `f${state.link(url)}`;
     },
     /**
@@ -116,14 +121,14 @@ function template(state: State, options: IOptions): Templater {
      * @param {object} schema
      * @return {void}
      */
-    visit(schema) {
+    visit(schema: ISchema) {
       tpl.cached.push({});
       state.visit(schema, tpl);
       tpl.cached.pop();
     },
   });
 
-  function dataToString() {
+  function dataToString(this: string[]) {
     return this.join('.').replace(/\.\[/g, '[');
   }
   tpl.data.toString = dataToString;
@@ -177,7 +182,7 @@ function restore(source, schema, { inner } = {}) {
  * @param {TemplateOptions} options
  * @return {string} variables
  */
-function makeVariables({ defineErrors, index }) {
+function makeVariables({ defineErrors, index }: {index: number; defineErrors: boolean}) {
   /**
    * @var {array} errors - empty array for pushing errors ability
    * @see errorHandler
@@ -208,13 +213,13 @@ function makeVariables({ defineErrors, index }) {
  * @param {TemplateOptions} options
  * @return {string} functions
  */
-function makeHelpers({ context, inner }) {
+function makeHelpers({ context, inner }: {context: string[]; inner: string}) {
   if (inner || !context.length) {
     return '';
   }
 
-  const functions = [];
-  const references = [];
+  const functions: string[] = [];
+  const references: string[] = [];
 
   context
       .forEach((value, i) => {
@@ -238,7 +243,10 @@ function makeHelpers({ context, inner }) {
  * @param {TemplateOptions} options
  * @return {string} functions
  */
-function makeContent(options) {
+function makeContent(options: {
+  lines: string[];
+  defineErrors: boolean;
+}) {
   const { defineErrors, lines } = options;
 
   const variables = makeVariables(options);
@@ -293,7 +301,7 @@ function body({ cachedIndex, lines }, { context }, { inner, errorHandler } = {})
  * Transforms a validator utilities into generated functions body
  * @return {function} template
  */
-function templateExpression(strings, ...keys) {
+function templateExpression(strings: string[], ...keys: any[]) {
   return (...values) => {
     let dict = values[values.length - 1] || {};
     let result = [strings[0]];

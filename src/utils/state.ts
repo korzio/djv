@@ -33,7 +33,7 @@ class State {
    * @param {object} schema
    * @returns {number/boolean} index
    */
-  addEntry(url, schema) {
+  addEntry(url: string, schema: ISchema) {
     let entry = this.entries.get(schema);
     if (entry === false) {
       // has already been added to process queue
@@ -60,7 +60,7 @@ class State {
    * @param {object} schema
    * @returns {void}
    */
-  revealReference(schema) {
+  revealReference(schema: ISchema) {
     for (
         let doubled = this.context.indexOf(schema);
         doubled !== -1;
@@ -77,7 +77,7 @@ class State {
    * @param {string} url
    * @returns {string} entry
    */
-  link(url) {
+  link(url: string) {
     const schema = this.resolve(url);
     const entry = this.addEntry(url, schema);
     return entry;

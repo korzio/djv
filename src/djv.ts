@@ -47,7 +47,8 @@ interface IFormats {
 }
 
 export interface ISchema {
-  id: string
+  id: string;
+  toString:(a: string) => string
 }
 
 interface IResolve {
@@ -55,6 +56,8 @@ interface IResolve {
   schema: any;
   fn: any;
 }
+
+type INoNameResolve = Omit<IResolve, 'name'>
 
 class Environment {
   static expression = expression
@@ -115,7 +118,7 @@ class Environment {
    * @param {object} schema
    * @returns {resolved}
    */
-  addSchema(name: string, schema: ISchema): IResolve {
+  addSchema(name: string, schema: ISchema): INoNameResolve {
     const realSchema = typeof name === 'object' ? name : schema;
     const resolved = {
       schema: realSchema,
@@ -161,7 +164,7 @@ class Environment {
    * @param {string} name
    * @returns {resolved}
    */
-  resolve(name: string): IResolve {
+  resolve(name: string): INoNameResolve {
     if (typeof name === 'object' || !this.resolved[name]) {
       return this.addSchema(
           name,
@@ -185,13 +188,13 @@ class Environment {
    * @returns {serializedInternalState}
    */
   export(name: string) {
-    let resolved;
+    let resolved: any;
     if (name) {
-      resolved = this.resolve(name);
+      const resolvedNoName = this.resolve(name);
       resolved = {
         name,
-        schema: resolved.schema,
-        fn: resolved.fn.toString()
+        schema: resolvedNoName.schema,
+        fn: resolvedNoName.fn.toString()
       };
     } else {
       resolved = {};
