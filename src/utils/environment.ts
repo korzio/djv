@@ -11,13 +11,17 @@ import formats from './formats';
 import { keys } from './uri';
 import { transformation } from './schema';
 
-const environmentConfig = {};
+type envConf = {
+  [key: string]: Function | undefined;
+}
 
-function add(version, config) {
+const environmentConfig: envConf = {};
+
+function add(version: string, config: Function) {
   environmentConfig[version] = config;
 }
 
-function use(version) {
+function use(version?: string) {
   if (!version || !environmentConfig[version]) {
     return;
   }

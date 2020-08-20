@@ -4,6 +4,8 @@
  * Basic utilities for djv project
  */
 
+import {ISchema} from "../djv";
+
 /**
  * @name asExpression
  * @type {function}
@@ -15,7 +17,7 @@
  * @param {object} tpl templater instance
  * @returns {string} expression
  */
-function asExpression(fn, schema, tpl) {
+function asExpression(fn: Function, schema: ISchema, tpl) {
   if (typeof fn !== 'function') {
     return fn;
   }
