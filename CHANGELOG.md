@@ -1,3 +1,10 @@
+#### 2.1.4 (2020-12-27)
+
+##### Chores
+
+* **npm:**  regenerate package lock ([46bfdbe8](https://github.com/korzio/djv/commit/46bfdbe86fe821e9bb4ed9b39ea1830840204742))
+* **code:**  Move clear decode function to outer scope ([5e65fda4](https://github.com/korzio/djv/commit/5e65fda4edbaa7a7495fd759fb5ab942fa06308f))
+
 #### 2.1.2 (2019-03-06)
 
 ##### Other Changes
