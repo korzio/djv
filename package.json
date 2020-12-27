@@ -1,6 +1,6 @@
 {
   "name": "djv",
-  "version": "2.1.2",
+  "version": "2.1.4-alpha.0",
   "description": "dynamic json-schema validator",
   "main": "lib/djv.js",
   "browser": "djv.js",
@@ -53,9 +53,5 @@
   "spec_files": [
     "**/*.js"
   ],
-  "stopSpecOnExpectationFailure": false,
-  "random": false,
-  "dependencies": {
-    "fsevents": "^2.2.1"
-  }
+  "stopSpecOnExpectationFailure": false
 }
