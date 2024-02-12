@@ -18,14 +18,6 @@ This is a part of **djv** packages aimed to work with json-schema.
 Any contributions are welcome. Check the [contribution guide](./CONTRIBUTING.md).
 Since version **1.2.0** *djv* package supports `draft-06`. Version **2.0.0** makes `draft-06` the default schema version. To use other versions check the [environment section](#environment).
 
-## Help and support
-
-[![githelp.app shield](https://rbpwwcsvhmbmfiphokrm.supabase.co/storage/v1/object/public/public_resources/Badge2%20-%20round%20corners.svg?t=2023-12-11T13%3A11%3A05.524Z)](https://githelp.app/repos/djv)
-
-[You can get help and support, including direct online assistance, related to djv through Githelp here.](https://githelp.app/repos/djv)
-
-At the moment this is a limited opportunity to try an early version of Githelp.
-
 ## Table of contents <a name="content"></a>
 
 * [djv](#title)
